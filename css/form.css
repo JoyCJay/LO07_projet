@@ -1,0 +1,48 @@
+.myform{
+    background: -webkit-linear-gradient(
+        top,white,#F4FA58,#01DF01
+        );
+    filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.65;
+}
+
+.form_left{
+    position: absolute;
+    left: 30px;
+}
+.form_right{
+    position: absolute;
+    left: 350px;
+}
+
+.form_l1{
+    position: absolute;
+    top: 20px;
+}
+.form_l2{
+    position: absolute;
+    top: 70px; 
+}
+.form_l3{
+    position: absolute;
+    top: 120px; 
+}
+.form_l4{
+    position: absolute;
+    top: 170px; 
+}
+.form_l5{
+    position: absolute;
+    top: 220px; 
+}
+.form_l6{
+    position: absolute;
+    top: 270px; 
+}
+.form_l7{
+    position: absolute;
+    top: 320px; 
+}
+.form_l8{
+    position: absolute;
+    top: 370px; 
+}

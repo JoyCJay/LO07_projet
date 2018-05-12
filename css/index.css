@@ -1,0 +1,53 @@
+body{
+    background-image: url(../img/imgx/bg.jpg);
+    background-repeat:no-repeat;
+    width:100%;
+    background-size:cover;
+}
+/*------------------------------------------------------*/
+#form{
+    position: absolute;
+    right: 15.5vw;
+    top: 3vh;
+}
+.signin{
+    position: relative;
+    right: -8px;
+}
+.login{
+    position: relative;
+    right: -10px;
+}
+#id{
+
+    width: 120px;
+}
+#mdp{
+
+    width: 120px;
+}
+/*------------------------------------------------------*/
+
+.logo{
+    width: 40vmax;
+    position: relative;
+    top: 6vh;
+    left: 15vw ;
+}
+
+/*------------------------------------------------------*/
+#self_carousel{
+    position: relative;
+    top: 13vh;
+    background: #F2E1F3;
+    width: 70vw;
+}
+#affiche-droite{
+    position: absolute;
+    right: -30px;
+}
+#affiche-gauche{
+    position: absolute;
+    left: -30px;
+}
+/*------------------------------------------------------*/

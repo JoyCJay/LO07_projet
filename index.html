@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- http://localhost/LO07_projet/index.html -->
+  <title>Nounous ＆ Moi</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/index.css"> 
+  <link rel="stylesheet" href="css/bootstrap.css">  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/self.js"></script>
+</head>
+
+<body>
+  <div class="container" id="identifier">
+    <div class="row">
+        <!--表单form-->
+		    <form id="form" name="form" method="post" action="login.php">
+              <input type="text" id="id" name="id">
+              <input type="submit" class="btn btn-outline-primary login" value="Log In">
+              <br/>
+              <input type="password" id="mdp" name="mdp">
+              <button type="button" class="btn btn-outline-primary signin">Sign In</button>
+        </form>
+    </div>
+  </div>
+
+  <img class='logo' src="img/logo.png">
+
+  <div id="self_carousel" class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:720px;margin:0 auto;">
+        <!-- 指示符 -->
+        <ul class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+          <li data-target="#myCarousel" data-slide-to="4"></li>
+          <li data-target="#myCarousel" data-slide-to="5"></li>
+          <li data-target="#myCarousel" data-slide-to="6"></li>
+          <li data-target="#myCarousel" data-slide-to="7"></li>
+        </ul>
+        <!-- 轮播图片 -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="img/ff-0.jpg" style="margin:0 auto">
+          </div>
+          <div class="carousel-item">
+            <img src="img/ff-1.jpg">
+          </div>
+          <div class="carousel-item">
+            <img src="img/ff-2.jpg">
+          </div>
+          <div class="carousel-item">
+            <img src="img/ff-3.jpg">
+            </div>
+          <div class="carousel-item">
+            <img src="img/ff-4.jpg">
+          </div>
+          <div class="carousel-item">
+            <img src="img/ff-5.jpg">
+          </div>
+          <div class="carousel-item">
+            <img src="img/ff-6.jpg">
+          </div>
+          <div class="carousel-item">
+            <img src="img/ff-7.jpg">
+          </div>
+          <div class="carousel-item">
+            <img src="img/ff-8.jpg">
+          </div>
+          </div>
+        </div>
+        <!-- 左右切换按钮 -->
+        <a class="carousel-control-prev" id="affiche-gauche" href="#myCarousel" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" id="affiche-droite" href="#myCarousel" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+  </div>
+
+</body>
+</html>

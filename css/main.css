@@ -1,0 +1,39 @@
+body{
+    background-image: url(../img/imgx/bg.jpg);
+    background-repeat:no-repeat;
+    width:100%;
+    background-size:cover;
+}
+/*------------------------------------------------------*/
+#A{
+    width: 750px;
+    height: 100px;
+    position: absolute;
+    top:0px;
+    left: 250px;
+}
+#B{
+    width: 250px;
+    height: 800px;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    background-color: red;
+}
+#C{
+    width: 670px;
+    height: 450px;
+    position: absolute;
+    left: 250px;
+    top: 200px;
+}
+#navigation{
+    position: relative;
+    top: 20px;
+}
+.logo{
+    width: 40vmax;
+    position: absolute;
+    top: 2vh;
+    right: 2vw ;
+}
