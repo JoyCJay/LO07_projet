@@ -32,8 +32,8 @@ body{
     top: 20px;
 }
 .logo{
-    width: 40vmax;
+    width: 360px;
     position: absolute;
-    top: 2vh;
-    right: 2vw ;
+    top: 17px;
+    right:90px ;
 }

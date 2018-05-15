@@ -10,35 +10,33 @@ body{
     right: 15.5vw;
     top: 3vh;
 }
-.signin{
-    position: relative;
-    right: -8px;
-}
 .login{
     position: relative;
     right: -10px;
 }
-#id{
-
-    width: 120px;
+.Nouveau1{
+    position: absolute;
+    right: 365px;
+    top: 65px;
 }
-#mdp{
-
-    width: 120px;
+.Nouveau2{
+    position: absolute;
+    right: 175px;
+    top: 65px;
 }
 /*------------------------------------------------------*/
-
 .logo{
     width: 40vmax;
-    position: relative;
-    top: 6vh;
+    position: absolute;
+    top: 40px;
     left: 15vw ;
 }
 
 /*------------------------------------------------------*/
 #self_carousel{
-    position: relative;
-    top: 13vh;
+    position: absolute;
+    left: 180px;
+    top: 130px;
     background: #F2E1F3;
     width: 70vw;
 }

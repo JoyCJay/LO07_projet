@@ -17,16 +17,17 @@
     <div class="row">
         <!--表单form-->
 		    <form id="form" name="form" method="post" action="login.php">
-              <input type="text" id="id" name="id">
+              <input type="text" id="id" name="id" placeholder="Identification" style="width:120px;" required>
+              <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" style="width:120px;position: relative; right: -8px;" required>
+              <input type="hidden" value="parents" name="type">
               <input type="submit" class="btn btn-outline-primary login" value="Log In">
-              <br/>
-              <input type="password" id="mdp" name="mdp">
-              <button type="button" class="btn btn-outline-primary signin">Sign In</button>
         </form>
     </div>
+    <button type="button" class="btn btn-outline-primary Nouveau1" onclick="location.href='./nouveau_parents.html'">Nouveaux parents</button>
+    <button type="button" class="btn btn-outline-primary Nouveau2" onclick="location.href='./nouveau_nounous.html'">Nouveaux nounous</button>
   </div>
 
-  <img class='logo' src="img/logo.png">
+  <a href="http://localhost/LO07_projet/index.html"><img class='logo' src="img/logo.png"></a>
 
   <div id="self_carousel" class="container">
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:720px;margin:0 auto;">

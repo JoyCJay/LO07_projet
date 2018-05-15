@@ -1,3 +1,23 @@
+<?php
+
+
+function show_table($table_name){
+  $DB_conn = mysqli_connect ('localhost','root','123456','LO07_projet');
+  $sql_sentence = "select * from $table_name;";
+  $DB_result = mysqli_query($DB_conn,$sql_sentence); 
+  if ($DB_result){
+      echo "<pre>";
+      while($temp = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC)){
+      $DB_arrays[]=$temp;
+      }
+  print_r($DB_arrays);
+  echo "</pre>";
+  }
+  mysqli_close($DB_conn);
+}
+
+?>
+
 <<!DOCTYPE html>
 <html>
 <head>
