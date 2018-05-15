@@ -10,10 +10,22 @@
         echo "OK, saved";            
         mysqli_close($DB_conn);
     }
-    
-    $id = $_POST['Prenom'].".".$_POST['Nom'];
-    $push = array($id,$_POST['Portable'],$_POST['identification']);
-    print_r($push);
-    sign_in_DBR($push);
+
+    if ($_POST['Mdp']!=$_POST['Mdp_r']) {
+        echo "<h1>2fois de mot de passe n'est pas le meme!</h1>";
+        if ($_POST['identification']=="nounous") {
+            echo "<button type='button' class='btn btn-outline-primary Nouveau1' onclick=\"location.href='./nouveau_nounous.html'\">Come back</button>";
+        }
+        elseif ($_POST['identification']=="parents") {
+            echo "<button type='button' class='btn btn-outline-primary Nouveau1' onclick=\"location.href='./nouveau_parents.html'\">Come back</button>";
+        }
+    }
+    else{
+        $push = array($_POST['Login'],$_POST['Mdp'],$_POST['identification']);
+        print_r($push);
+        sign_in_DBR($push);
+        echo "<h1>Succeed to sign in!</h1>";
+        echo "<button type='button' class='btn btn-outline-primary Nouveau1' onclick=\"location.href='./index.html'\">Come back</button>";
+    }
 ?>
 

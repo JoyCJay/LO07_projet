@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/self.js"></script>
     <!--
-        http://localhost/LO07_projet/candidat.php
+        http://localhost/LO07_projet/nouveau_nounous.html
     -->
 </head>
 <body>
@@ -52,7 +53,6 @@
 <button onClick="location.href='http://www.baidu.com/'">baidu</button>
 </div>
 <div class="container myform" id="C">
-<p>nouveau_nounous.php</p>
   <form method="post" name="form1" action = './inscription.php'>
     <input type="hidden" name="identification" value="nounous">
     <div class="Nom form_left form_l1">
@@ -85,22 +85,36 @@
         <input type="file" id="Photo" name="Photo"><br/>
     </div>
 
-    <div class="Language form_left form_l5">
-        <input type="checkbox" name="Language" value="Français">Français
-		<input type="checkbox" name="Language" value="Anglais">Anglais
-		<input type="checkbox" name="Language" value="Allemande">Allemande
-		<input type="checkbox" name="Language" value="Chinois">Chinois
+    <div class="Portable form_left form_l5">
+        <label for="Login">Login:</label>
+        <input type="text" id="Login" name="Login" placeholder="Login" style="width:200px;" required="required">
+    </div>
+    <div class="Portable form_left form_l6">
+        <label for="Mdp">Mot de passe:</label>
+        <input type="password" id="Mdp" name="Mdp" placeholder="Mot de passe" style="width:200px;" required="required">
+    </div>
+    <div class="Portable form_right form_l6">
+        <label for="Mdp_r">Répeter:</label>
+        <input type="password" id="Mdp_r" name="Mdp_r" placeholder="Répeter mot de passe" style="width:200px;" required="required">
+    </div>
+
+    <div class="Language form_left form_l7">
+        <input type="checkbox" name="Language[]" value="Français">Français
+		<input type="checkbox" name="Language[]" value="Anglais">Anglais
+		<input type="checkbox" name="Language[]" value="Allemande">Allemande
+		<input type="checkbox" name="Language[]" value="Chinois">Chinois
     </div>    
 
-    <div class="Presentation form_left form_l6">
+    <div class="Presentation form_left form_l8">
         <label for="Presentation">Presentation:</label><br/>
         <textarea id="Presentation" name="Presentation" style="width: 570px;"></textarea>
     </div>
-    <!--
-        Expérience
-        Liste des évaluations effectuées par les parents
-    -->
-    <div class="form_left form_l8">
+
+    <div class="Expérience form_left form_l10">
+        <label for="Expérience">Expérience:</label><br/>
+        <textarea id="Expérience" name="Expérience" style="width: 570px;"></textarea>
+    </div>
+    <div class="form_left form_l12">
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-primary">Reset</button>
     </div>
