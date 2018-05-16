@@ -48,3 +48,14 @@ function show_table($table_name){
     
 </body>
 </html>
+
+            \"$push['nom']\",
+            \"$push['prenom']\",
+            \"$push['age']\",
+            \"$push['ville']\",
+            \"$push['situation']\",
+            \"$push['email']\",
+            \"$push['portable']\",
+            \"$push['langues']\",
+            \"$push['presentation']\",
+            \"$push['experience']\"

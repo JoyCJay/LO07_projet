@@ -30,10 +30,10 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `login`;
 CREATE TABLE IF NOT EXISTS `login` (
-  `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(15) NOT NULL,
-  `mot_de_passe` varchar(15) NOT NULL,
-  `type` varchar(15) NOT NULL,
+  `id_utilisateur` int(5) NOT NULL AUTO_INCREMENT,
+  `login` varchar(20) NOT NULL,
+  `mot_de_passe` varchar(20) NOT NULL,
+  `type` varchar(10) NOT NULL,
   PRIMARY KEY (`login`),
   KEY (`id_utilisateur`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 INSERT INTO `login` (`id_utilisateur`, `login`, `mot_de_passe`, `type`) VALUES
 (1, 'soso', '12345', 'parents'),
 (2, 'gigi', 'wfxs', 'nounous'),
-(3, 'zcj', 'svse', 'administrateur');
+(3, 'zcj', 'svse', 'admin');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -53,7 +53,7 @@
 <button onClick="location.href='http://www.baidu.com/'">baidu</button>
 </div>
 <div class="container myform" id="C">
-  <form method="post" name="form1" action = './inscription.php'>
+  <form enctype="multipart/form-data" method="post" name="form1" action = './inscription.php'>
     <input type="hidden" name="identification" value="nounous">
     <div class="Nom form_left form_l1">
         <label for="Nom">Nom:</label>
@@ -82,7 +82,7 @@
 
     <div class="Photo form_left form_l4">
         <label for="Photo">Photo:</label>
-        <input type="file" id="Photo" name="Photo"><br/>
+        <input type="file" id="Photo" name="file"><br/>
     </div>
 
     <div class="Portable form_left form_l5">
@@ -99,7 +99,7 @@
     </div>
 
     <div class="Language form_left form_l7">
-        <input type="checkbox" name="Language[]" value="Français">Français
+        <input type="checkbox" name="Language[]" value="Francais">Français
 		<input type="checkbox" name="Language[]" value="Anglais">Anglais
 		<input type="checkbox" name="Language[]" value="Allemande">Allemande
 		<input type="checkbox" name="Language[]" value="Chinois">Chinois
