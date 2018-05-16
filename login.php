@@ -22,7 +22,7 @@ echo login_DBR($_POST['id'],$_POST['mdp']);
     elseif ($_POST['type']=='parents') {
         $url="http://localhost/LO07_projet/parents.php";
     }
-    elseif ($_POST['type']=='administrateur') {
+    elseif ($_POST['type']=='admin') {
         echo "admin";
     }
     Header("Location: $url"); 
