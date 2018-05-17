@@ -14,17 +14,17 @@ function login_DBR($id,$mdp){
 }
 
 
-echo login_DBR($_POST['id'],$_POST['mdp']);
-/*
-    if ($_POST['type']=='nounous'){
-        echo "Nounous";
+    if (login_DBR($_POST['id'],$_POST['mdp'])=='nounous'){
+        $url="http://localhost/LO07_projet/nounous.php";;
     }
-    elseif ($_POST['type']=='parents') {
+    elseif (login_DBR($_POST['id'],$_POST['mdp'])=='parents') {
         $url="http://localhost/LO07_projet/parents.php";
     }
-    elseif ($_POST['type']=='admin') {
-        echo "admin";
+    elseif (login_DBR($_POST['id'],$_POST['mdp'])=='admin') {
+        $url="http://localhost/LO07_projet/admin.php";
+    }
+    else{
+        echo "<h1>error!</h1>";
     }
     Header("Location: $url"); 
-*/
 ?>

@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,7 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/self.js"></script>
     <!--
-        http://localhost/LO07_projet/main.php
+        http://localhost/LO07_projet/admin.php
     -->
 </head>
 <body>
@@ -52,7 +54,7 @@
 <div class="container" id="B">
     <img id='profil' src="img/profil.jpg">
     <div id="profil_info">
-        ZHANG chengjie Administrator
+        Song Xiaotong Administrator
     </div>
     <div id="accordion" class="panel_B">
           <div class="card" id="panel_compte">
@@ -96,54 +98,37 @@
           </div>
       </div>
 </div>
-
-<div class="container myform" id="C">
-  <form enctype="multipart/form-data" method="post" name="form1" action = './inscription.php'>
-    <input type="hidden" name="identification" value="parents">
-    <div class="Nom form_left form_l1">
-        <label for="Nom">Nom:</label>
-        <input type="text" id="Nom" name="Nom" placeholder="Enter Nom" style="width:200px;" required="required">
-    </div>
-    <div class="Prenom form_right form_l1">
-        <label for="Prenom">Prenom:</label>
-        <input type="text" id="Prenom" name="Prenom" placeholder="Enter Prenom" style="width:200px;" required="required">
-    </div>
-    <div class="Ville form_left form_l2">
-        <label for="Ville">Ville:</label>
-        <input type="text" id="Ville" name="Ville" placeholder="Enter Ville" style="width:200px;" required="required">
-    </div>
-    <div class="Email form_left form_l3">
-        <label for="Email">Email:</label>
-        <input type="email" id="Email" name="Email" placeholder="Enter Email" style="width:200px;" required="required">
-    </div>
-    <div class="Portable form_right form_l3">
-        <label for="Portable">Portable:</label>
-        <input type="number" id="Portable" name="Portable" placeholder="Portable" style="width:200px;" required="required">
-    </div>
-
-    <div class="Photo form_left form_l4">
-        <label for="Photo">Profil:</label>
-        <input type="file" id="Photo" name="file"><br/>
-    </div>
-
-    <div class="Portable form_left form_l5">
-        <label for="Login">Login:</label>
-        <input type="text" id="Login" name="Login" placeholder="Login" style="width:200px;" required="required">
-    </div>
-    <div class="Portable form_left form_l6">
-        <label for="Mdp">Mot de passe:</label>
-        <input type="password" id="Mdp" name="Mdp" placeholder="Mot de passe" style="width:200px;" required="required">
-    </div>
-    <div class="Portable form_right form_l6">
-        <label for="Mdp_r">Répeter:</label>
-        <input type="password" id="Mdp_r" name="Mdp_r" placeholder="Répeter mot de passe" style="width:200px;" required="required">
-    </div>
-
-    <div class="form_left form_l7">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="reset" class="btn btn-primary">Reset</button>
-    </div>
-  </form>
+<div class="container" id="C">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Portable</th>
+        <th>Note Moyen</th>
+        <th>Situation</th>
+        <th>Do</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SONG</td>
+        <td>Xiaotong</td>
+        <td>07XXXXXXXX</td>
+        <td>18</td>
+        <td>candidat</td>
+        <td><a href="https://www.google.fr">Valider</a></td>
+      </tr>
+      <tr>
+        <td>WANG</td>
+        <td>Gao</td>
+        <td>07XXXXXXXX</td>
+        <td>15</td>
+        <td>formel</td>
+        <td><a href="https://www.google.fr">Bloquer</a></td>
+      </tr>
+    </tbody>
+    </table>
 </div>
 
 </body>
