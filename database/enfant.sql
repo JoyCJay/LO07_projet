@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 2018-05-17 13:33:40
+-- Generation Time: 2018-05-19 16:30:11
 -- 服务器版本： 5.7.19
 -- PHP Version: 7.1.9
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `lo07`
+-- Database: `nounous`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `enfant`;
 CREATE TABLE IF NOT EXISTS `enfant` (
   `id_enfant` int(11) NOT NULL AUTO_INCREMENT,
   `prenom` varchar(11) NOT NULL,
-  `parents` varchar(225) NOT NULL,
+  `parents` varchar(20) NOT NULL,
   `date_de_naissance` date NOT NULL,
   `restrictions_alimentaires` varchar(225) NOT NULL,
   PRIMARY KEY (`id_enfant`),
