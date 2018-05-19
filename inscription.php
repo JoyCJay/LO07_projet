@@ -1,12 +1,12 @@
 <?php
     function insert_loin_DBR($push){
-        $DB_conn = mysqli_connect ('localhost','root','123456','LO07_projet');
+        $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
         $sql_sentence = "INSERT INTO `login` (`login`, `mot_de_passe`, `type`) VALUES(\"$push[0]\",\"$push[1]\",\"$push[2]\");";
         $DB_result = mysqli_query($DB_conn,$sql_sentence);          
         mysqli_close($DB_conn);
     }
     function insert_nounous_DBR($push){
-        $DB_conn = mysqli_connect ('localhost','root','123456','LO07_projet');
+        $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
         $sql_sentence = "INSERT INTO `nounous` (`id_nounous`, `login`, `mot de passe`, `nom`, `prenom`, `age`, `ville`, `disponibilite`, `situation`, `email`, `portable`, `photo`, `langues`, `presentation`, `experience`) VALUES("
             .$push["id_nounous"].","
             ."'".$push['login']."',"
@@ -28,8 +28,23 @@
         $DB_result = mysqli_query($DB_conn,$sql_sentence);          
         mysqli_close($DB_conn);
     }
+    function insert_parents_DBR($push){
+        $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+        $sql_sentence = "INSERT INTO `parents` (`id_parents`, `login`, `mot de passe`, `nom`,  `ville`,  `email`, `portable`, `photo`) VALUES("
+            .$push["id_parents"].","
+            ."'".$push['login']."',"
+            ."'".$push['mot de passe']."',"
+            ."'".$push['nom']."',"
+            ."'".$push['ville']."',"
+            ."'".$push['email']."',"
+            ."'".$push['portable']."',"
+            ."'".$push['photo']."');";
+        echo $sql_sentence;
+        $DB_result = mysqli_query($DB_conn,$sql_sentence);          
+        mysqli_close($DB_conn);
+    }
     function is_doublon_DBR($id){
-        $DB_conn = mysqli_connect ('localhost','root','123456','LO07_projet');
+       $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
         $sql_sentence = "select * from login where `login`.`login`='".$id."';";
         $DB_result = mysqli_query($DB_conn,$sql_sentence); 
         if ($DB_result){
@@ -43,7 +58,7 @@
         return FALSE;
     }
     function id_login_DBR($id,$mdp){
-        $DB_conn = mysqli_connect ('localhost','root','123456','LO07_projet');
+       $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
         $DB_result = mysqli_query($DB_conn,'select * from login;'); 
         if ($DB_result){
             while($temp = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC)){
@@ -57,6 +72,7 @@
     }
     function move_photo($photo_path){
         global $_FILES;
+         $_FILES["file"]["name"]=$_POST['Photo'];
         if ($_FILES["file"]["error"]==0) {
             // 判断当期目录下的 upload 目录是否存在该文件
             // 如果没有需要创建它，且目录权限为 777
@@ -75,7 +91,7 @@
         global $_FILES;
         //根据类型插入到nounous,parents表当中
         $id_utilisateur = id_login_DBR($_POST['Login'],$_POST['Mdp']);
-        $_FILES["file"]["name"]=$_POST['Login'];
+        $_FILES["file"]["name"]=$_POST['Photo'];
         $photo_path = "./database/photos/" . $_FILES["file"]["name"];
         if ($_POST['identification']=="nounous") {
             $push = array(
@@ -95,7 +111,7 @@
                 "experience" => $_POST['Expérience']
             );
             echo "<br/><br/><pre>";
-            echo '<h3>$push</h3>';
+            echo '<h3>informations du nounous</h3>';
             print_r($push);
             echo "</pre>";
             insert_nounous_DBR($push);
@@ -104,21 +120,20 @@
         } 
         else if ($_POST['identification']=="parents"){
             $push = array(
-                "id_nounous" => $id_utilisateur,
+                "id_parents" => $id_utilisateur,
                 "login" => $_POST['Login'],
                 "mot de passe" => $_POST['Mdp'],
                 "nom" => $_POST['Nom'],
-                "prenom" => $_POST['Prenom'],
                 "ville" => $_POST['Ville'],
                 "email" => $_POST['Email'],
                 "portable" => $_POST['Portable'],
                 "photo" => $photo_path
             );
             echo "<br/><br/><pre>";
-            echo '<h3>$push</h3>';
+            echo '<h3>information du parents</h3>';
             print_r($push);
             echo "</pre>";
-            //insert_parents_DBR($push);
+            insert_parents_DBR($push);
             echo "<h1>Succeed to insert into table: parents!</h1>";
             move_photo($photo_path);
             echo "<button type='button' onclick=\"location.href='./gerer_enfants.html'\">Gerer enfant(s)</button>";
@@ -133,6 +148,7 @@
     print_r($_FILES["file"]);
     echo "</pre>";
     //插入到login表当中（注册行为）
+    global $_POST; 
     if ($_POST['Mdp']!=$_POST['Mdp_r']) {
         echo "<h1>2fois de mot de passe n'est pas le meme!</h1>";
         if ($_POST['identification']=="nounous") {
