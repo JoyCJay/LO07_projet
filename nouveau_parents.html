@@ -97,51 +97,52 @@
       </div>
 </div>
 
+    
 <div class="container myform" id="C">
-  <form enctype="multipart/form-data" method="post" name="form1" action = './inscription.php'>
+    
+  <form  method="post" name="form2" action = './inscription.php'>
     <input type="hidden" name="identification" value="parents">
-    <div class="Nom form_left form_l1">
-        <label for="Nom">Nom:</label>
-        <input type="text" id="Nom" name="Nom" placeholder="Enter Nom" style="width:200px;" required="required">
+    <div class="form-group row">
+    <label for="Nom" class="col-sm-2 form-control-label">Nom:</label>
+    <div class="col-sm-10">
+      <input type="text"  id="Nom" name="Nom" placeholder="Nom">
     </div>
-    <div class="Prenom form_right form_l1">
-        <label for="Prenom">Prenom:</label>
-        <input type="text" id="Prenom" name="Prenom" placeholder="Enter Prenom" style="width:200px;" required="required">
     </div>
-    <div class="Ville form_left form_l2">
-        <label for="Ville">Ville:</label>
-        <input type="text" id="Ville" name="Ville" placeholder="Enter Ville" style="width:200px;" required="required">
+    <div class="form-group row">
+    <label for="Ville" class="col-sm-2 form-control-label">Ville:</label>
+    <div class="col-sm-10">
+      <input type="text" id="Ville" name="Ville" placeholder="Ville">
     </div>
-    <div class="Email form_left form_l3">
-        <label for="Email">Email:</label>
-        <input type="email" id="Email" name="Email" placeholder="Enter Email" style="width:200px;" required="required">
     </div>
-    <div class="Portable form_right form_l3">
-        <label for="Portable">Portable:</label>
-        <input type="number" id="Portable" name="Portable" placeholder="Portable" style="width:200px;" required="required">
-    </div>
+    <div class="form-group row ">
+    <label for="Email" class="col-md-2 form-control-label  ">Email:</label>
+    <div class="col-sm-10">
+      <input type="email" id="Email"  name="Email"  placeholder="e-mail" required="required">
+    </div></div>
+    <div class="Portable form-group row ">
+        <label for="Portable"  class="col-sm-2 form-control-label ">Portable:</label>
+        <div class="col-sm-10 "><input type="tel" id="Portable"  name="Portable" placeholder="Portable"  required="required">
+    </div></div>
+    <div class="form-group row ">
+        <label for="Photo" class="col-sm-2 form-control-label ">Photo:</label>
+        <div class="col-sm-10 "><input type="file" id="Photo" name="Photo"><br/>
+    </div></div>
+    <div class="form-group row ">
+        <label for="Login" class="col-sm-2 form-control-label ">Login:</label>
+        <div class="col-sm-10 "><input type="text" id="Login"  name="Login" placeholder="Login" required="required">
+    </div></div>
+    <div class="Mdp form-group row ">
+        <label for="Mdp"  class="col-sm-2 form-control-label ">Mot de passe:</label>
+        <div class="col-sm-10 "><input type="password" id="Mdp" name="Mdp" placeholder="Passeword" required="required">
+    </div></div>
+    <div class="Mdp_r form-group row ">
+        <label for="Mdp_r"  class="col-sm-2 form-control-label ">Répeter:</label>
+        <div class="col-sm-10 "><input type="password" id="Mdp_r" name="Mdp_r"  placeholder="Répeter mot de passe"  required="required">
+    </div> </div>
 
-    <div class="Photo form_left form_l4">
-        <label for="Photo">Profil:</label>
-        <input type="file" id="Photo" name="file"><br/>
-    </div>
-
-    <div class="Portable form_left form_l5">
-        <label for="Login">Login:</label>
-        <input type="text" id="Login" name="Login" placeholder="Login" style="width:200px;" required="required">
-    </div>
-    <div class="Portable form_left form_l6">
-        <label for="Mdp">Mot de passe:</label>
-        <input type="password" id="Mdp" name="Mdp" placeholder="Mot de passe" style="width:200px;" required="required">
-    </div>
-    <div class="Portable form_right form_l6">
-        <label for="Mdp_r">Répeter:</label>
-        <input type="password" id="Mdp_r" name="Mdp_r" placeholder="Répeter mot de passe" style="width:200px;" required="required">
-    </div>
-
-    <div class="form_left form_l7">
+    <div class="form-group ">
         <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="reset" class="btn btn-primary">Reset</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
     </div>
   </form>
 </div>
