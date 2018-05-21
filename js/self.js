@@ -10,6 +10,9 @@ function disparaitre(){
     document.getElementById("B").style.visibility='hidden';
 }
 
+function admin_do(){
+    window.alert("R U sure?");
+}
 
 /*
 onmouseover="B_mouseover()" onmouseout="B_mouseout()"

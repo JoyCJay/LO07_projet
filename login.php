@@ -1,6 +1,6 @@
 <?php
 function login_DBR($id,$mdp){
-    $DB_conn = mysqli_connect ('localhost','root','123456','LO07_projet');
+    $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
     $DB_result = mysqli_query($DB_conn,'select * from login;'); 
     if ($DB_result){
         while($temp = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC)){

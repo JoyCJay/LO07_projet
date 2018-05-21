@@ -1,4 +1,26 @@
 <?php
+  function nounous_DBR(){
+    $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+    $DB_result = mysqli_query($DB_conn,'select * from nounous;'); 
+    if ($DB_result){
+      while($temp = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC)){
+        if ($temp["situation"]=="candidat") {
+          $do="Valider";
+        } else {
+          $do="Bloquer";
+        }
+        print("<tr>");
+        print("<td>".$temp["nom"]."</td>");
+        print("<td>".$temp["prenom"]."</td>");
+        print("<td>".$temp["email"]."</td>");
+        print("<td>Note</td>");
+        print("<td>".$temp["situation"]."</td>");
+        print("<td><a href='admin_do.php'>$do</a></td>");
+        print("</tr>");
+      }
+    }
+    mysqli_close($DB_conn);
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -98,35 +120,22 @@
           </div>
       </div>
 </div>
-<div class="container" id="C">
+<div class="container myform" id="C">
     <table class="table table-striped">
     <thead>
       <tr>
         <th>Nom</th>
         <th>Prenom</th>
-        <th>Portable</th>
+        <th>Email</th>
         <th>Note Moyen</th>
         <th>Situation</th>
         <th>Do</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>SONG</td>
-        <td>Xiaotong</td>
-        <td>07XXXXXXXX</td>
-        <td>18</td>
-        <td>candidat</td>
-        <td><a href="https://www.google.fr">Valider</a></td>
-      </tr>
-      <tr>
-        <td>WANG</td>
-        <td>Gao</td>
-        <td>07XXXXXXXX</td>
-        <td>15</td>
-        <td>formel</td>
-        <td><a href="https://www.google.fr">Bloquer</a></td>
-      </tr>
+      <?php
+        nounous_DBR();
+      ?>
     </tbody>
     </table>
 </div>

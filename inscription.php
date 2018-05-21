@@ -72,7 +72,6 @@
     }
     function move_photo($photo_path){
         global $_FILES;
-         $_FILES["file"]["name"]=$_POST['Photo'];
         if ($_FILES["file"]["error"]==0) {
             // 判断当期目录下的 upload 目录是否存在该文件
             // 如果没有需要创建它，且目录权限为 777
@@ -91,7 +90,7 @@
         global $_FILES;
         //根据类型插入到nounous,parents表当中
         $id_utilisateur = id_login_DBR($_POST['Login'],$_POST['Mdp']);
-        $_FILES["file"]["name"]=$_POST['Photo'];
+        $_FILES["file"]["name"]=$_POST['Nom'];
         $photo_path = "./database/photos/" . $_FILES["file"]["name"];
         if ($_POST['identification']=="nounous") {
             $push = array(

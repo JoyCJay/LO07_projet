@@ -59,3 +59,9 @@ function show_table($table_name){
             \"$push['langues']\",
             \"$push['presentation']\",
             \"$push['experience']\"
+
+
+            CREATE USER 'solange'@'localhost' IDENTIFIED BY 'abc1234567';
+            GRANT ALL ON *.* TO 'solange'@'localhost';
+            CREATE DATABASE nounous;
+            localhost','solange','abc1234567','nounous')
