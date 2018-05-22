@@ -4,7 +4,7 @@
     $DB_result = mysqli_query($DB_conn,'select * from nounous;'); 
     if ($DB_result){
       while($temp = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC)){
-        if ($temp["situation"]=="candidat") {
+        if ($temp["situation"]=="candidat" or $temp["situation"]=="bloquer") {
           $do="Valider";
         } else {
           $do="Bloquer";
@@ -15,7 +15,7 @@
         print("<td>".$temp["email"]."</td>");
         print("<td>Note</td>");
         print("<td>".$temp["situation"]."</td>");
-        print("<td><a href='admin_do.php'>$do</a></td>");
+        print("<td><a href='admin_do.php?id_nounous=".$temp['id_nounous']."&situation=".$temp['situation']."'>$do</a></td>");
         print("</tr>");
       }
     }
