@@ -1,5 +1,18 @@
 <?php
   function nounous_DBR(){
+    echo "<table class='table table-striped'>";
+    echo "<thead>";
+    echo "<tr>";  
+    echo "<th>Nom</th>";
+    echo "<th>Prenom</th>";
+    echo "<th>Email</th>";
+    echo "<th>Note Moyen</th>";
+    echo "<th>Situation</th>";
+    echo "<th>Do</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    //table dynamique
     $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
     $DB_result = mysqli_query($DB_conn,'select * from nounous;'); 
     if ($DB_result){
@@ -20,6 +33,9 @@
       }
     }
     mysqli_close($DB_conn);
+  //partie statique
+  echo "</tbody>";
+  echo "</table>"; 
   }
 ?>
 <!DOCTYPE html>
@@ -76,19 +92,19 @@
 <div class="container" id="B">
     <img id='profil' src="img/profil.jpg">
     <div id="profil_info">
-        Song Xiaotong Administrator
+        ZHANG Chengjie Administrator
     </div>
     <div id="accordion" class="panel_B">
           <div class="card" id="panel_compte">
             <div class="card-header">
               <a class="card-link B" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                Gerer mon compte
+                Gerer nounous
               </a>
             </div>
             <div id="collapseOne" class="collapse">
               <div class="card-block">
-                <a class="B" href="https://www.baidu.com">baidu</a></br>
-                <a class="B" href="https://www.google.fr">google</a>
+                <a class="B" href="#news1">Valider/Bloquer</a></br>
+                <a class="B" href="#news1">Filtrer nounous</a>
               </div>
             </div>
           </div>
@@ -96,12 +112,13 @@
           <div class="card" id="panel_histoire">
             <div class="card-header">
               <a class="collapsed card-link B" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-              Histoire
+              Contrat
             </a>
             </div>
             <div id="collapseTwo" class="collapse">
               <div class="card-block">
-              collapseTwo
+                <a>Afficher tous les contrats</a></br>
+                <a>Filtrer contrats</a></br>
               </div>
             </div>
           </div>
@@ -109,35 +126,38 @@
           <div class="card" id="panel_setting">
             <div class="card-header">
               <a class="collapsed card-link B" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                Setting
+                Vue global
               </a>
             </div>
             <div id="collapseThree" class="collapse">
               <div class="card-block">
-                collapseThree
+              <a>a.Repartition de nounous</a></br>
+              <a>b.Chiffre d’affair</a></br>
+              <a>c.Tendance du site</a></br>
+              <a>d.Boite de message</a></br>
               </div>
             </div>
           </div>
       </div>
 </div>
+
 <div class="container myform" id="C">
-    <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Prenom</th>
-        <th>Email</th>
-        <th>Note Moyen</th>
-        <th>Situation</th>
-        <th>Do</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-        nounous_DBR();
-      ?>
-    </tbody>
-    </table>
+  <div id="admin1-1" class="admin_function">
+    <?php nounous_DBR();?>
+  </div>
+
+  <div id="admin1-2" class="admin_function">
+    <h1>admin1-2</h1>
+  </div>
+
+  <div id="admin1-3" class="admin_function">
+    <h1>admin1-3</h1>
+  </div>
+
+  <div id="admin2-1" class="admin_function">
+    <h1>admin2-1</h1>
+  </div>
+
 </div>
 
 </body>

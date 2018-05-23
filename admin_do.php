@@ -2,7 +2,6 @@
     print("<pre>");
     print_r($_GET);
     print("</pre>");
-    //UPDATE nounous SET situation = 'bloquer' WHERE id_nounous = 3;
     $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
     if ($_GET['situation']=='bloquer' or $_GET['situation']=='candidat' ) {
         $situation='normal';

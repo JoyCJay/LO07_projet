@@ -13,22 +13,7 @@ function disparaitre(){
 function admin_do(){
     window.alert("R U sure?");
 }
-
-/*
-onmouseover="B_mouseover()" onmouseout="B_mouseout()"
-function profil_info_move(){
-    var css_sentence="width:60px;height:60px;position:absolute;top:40px;left:150px;";
-    document.getElementById("profil_info").setAttribute("style",css_sentence);
+function afficher(id){
+    $("p.pannel").hide();
+    document.getElementById(id).style.display='block';
 }
-function B_mouseover(){
-    setTimeout("profil_info_move()",700);
-}
-
-function profil_info_init(){
-    var css_sentence="width:135px;height:20px;position:absolute;top:145px;left:0px;";
-    document.getElementById("profil_info").setAttribute("style",css_sentence);
-}
-function B_mouseout(){
-    setTimeout("profil_info_init()",1000);
-}
-*/
