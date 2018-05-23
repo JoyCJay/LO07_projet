@@ -37,6 +37,19 @@
   echo "</tbody>";
   echo "</table>"; 
   }
+  function nombre_nounous($situ){
+    $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+    $sql_sentence="select COUNT(*) from nounous where situation='".$situ."';";
+    $DB_result = mysqli_query($DB_conn,$sql_sentence); 
+    if ($DB_result){
+      while($temp = mysqli_fetch_array ($DB_result,MYSQLI_NUM)){
+        $num=$temp[0];
+      }
+      return $num;
+    }
+    mysqli_close($DB_conn);
+    return 0;
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,6 +62,7 @@
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/self.js"></script>
     <!--
@@ -92,7 +106,11 @@
 <div class="container" id="B">
     <img id='profil' src="img/profil.jpg">
     <div id="profil_info">
-        ZHANG Chengjie Administrator
+      <?php session_start();
+        echo "Bonjour!  ";
+        echo $_SESSION['login']."  ";
+        echo $_SESSION['type'];
+      ?>
     </div>
     <div id="accordion" class="panel_B">
           <div class="card" id="panel_compte">
@@ -103,8 +121,8 @@
             </div>
             <div id="collapseOne" class="collapse">
               <div class="card-block">
-                <a class="B" href="#news1">Valider/Bloquer</a></br>
-                <a class="B" href="#news1">Filtrer nounous</a>
+                <a class="B" href="#admin1-1" onclick="afficherC('admin1-1');">Valider/Bloquer</a></br>
+                <a class="B" href="#admin1-2" onclick="afficherC('admin1-2');">Filtrer nounous</a>
               </div>
             </div>
           </div>
@@ -131,7 +149,7 @@
             </div>
             <div id="collapseThree" class="collapse">
               <div class="card-block">
-              <a>a.Repartition de nounous</a></br>
+              <a class="B" href="#admin3-1" onclick="afficherC('admin3-1');">Repartition de nounous</a></br>
               <a>b.Chiffre d’affair</a></br>
               <a>c.Tendance du site</a></br>
               <a>d.Boite de message</a></br>
@@ -142,23 +160,73 @@
 </div>
 
 <div class="container myform" id="C">
-  <div id="admin1-1" class="admin_function">
+
+  <div id="admin1-1" class="admin_function" style="display: none;">
     <?php nounous_DBR();?>
   </div>
 
-  <div id="admin1-2" class="admin_function">
-    <h1>admin1-2</h1>
+  <div id="admin1-2" class="admin_function" style="display: none;">
+
+    <form enctype="multipart/form-data" method="post" name="form1" action = '#admin1-2'>
+    <input type="hidden" name="filtrer" value="true">
+    <div class="Nom form_left form_l1">
+        <label for="Nom">Nom:</label>
+        <input type="text" id="Nom" name="Nom" placeholder="Enter Nom" style="width:200px;">
+    </div>
+    <div class="Prenom form_right form_l1">
+        <label for="Prenom">Prenom:</label>
+        <input type="text" id="Prenom" name="Prenom" placeholder="Enter Prenom" style="width:200px;">
+    </div>
+    <div class="Ville form_left form_l2">
+        <label for="Ville">Ville:</label>
+        <input type="text" id="Ville" name="Ville" placeholder="Enter Ville" style="width:200px;">
+    </div>
+
+    <div class="Email form_left form_l3">
+        <label for="Email">Email:</label>
+        <input type="email" id="Email" name="Email" placeholder="Enter Email" style="width:200px;">
+    </div>
+    <div class="Portable form_right form_l3">
+        <label for="Portable">Portable:</label>
+        <input type="number" id="Portable" name="Portable" placeholder="Portable" style="width:200px;">
+    </div>
+
+    <div class="Language form_left form_l4">
+        <input type="checkbox" name="Language[]" value="Francais">Français
+		    <input type="checkbox" name="Language[]" value="Anglais">Anglais
+		    <input type="checkbox" name="Language[]" value="Allemande">Allemande
+		    <input type="checkbox" name="Language[]" value="Chinois">Chinois
+    </div>    
+
+    <div class="form_left form_l5">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </div>
+    </form>
   </div>
 
-  <div id="admin1-3" class="admin_function">
-    <h1>admin1-3</h1>
-  </div>
-
-  <div id="admin2-1" class="admin_function">
-    <h1>admin2-1</h1>
+  <div id="admin3-1" class="admin_function" style="display: none;">
+    <div id="piechart"></div>
   </div>
 
 </div>
 
 </body>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      var arr =new Array();
+      arr[0]=['Task','nounous'];
+      arr[1]=['Normal',<?php echo nombre_nounous('normal'); ?>];
+      arr[2]=['Candidat',<?php echo nombre_nounous('candidat'); ?>];
+      arr.push(['bloquer',<?php echo nombre_nounous('bloquer'); ?>]);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(arr);
+        var options = {
+          title: 'Repartition de nounous'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
 </html>
