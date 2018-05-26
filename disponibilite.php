@@ -19,6 +19,3 @@ declarer_dispo();
  echo "<input type='button' name='back' value='Renter' onclick='javascript:history.go(-1)' />"
  
 ?>
-<script language="javascript" type="text/javascript">
-window.location.href="nounous.php";
-</script>
