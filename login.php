@@ -12,15 +12,16 @@ function login_DBR($id,$mdp){
     mysqli_close($DB_conn);
     return "false";
 }
-
-
-    if (login_DBR($_POST['id'],$_POST['mdp'])=='nounous'){
+session_start();
+$_SESSION['login']= $_POST['id'];
+$_SESSION['type']=login_DBR($_POST['id'],$_POST['mdp']);
+    if ($_SESSION['type']=='nounous'){
         $url="http://localhost/LO07_projet/nounous.php";;
     }
-    elseif (login_DBR($_POST['id'],$_POST['mdp'])=='parents') {
+    elseif ($_SESSION['type']=='parents') {
         $url="http://localhost/LO07_projet/parents.php";
     }
-    elseif (login_DBR($_POST['id'],$_POST['mdp'])=='admin') {
+    elseif ($_SESSION['type']=='admin') {
         $url="http://localhost/LO07_projet/admin.php";
     }
     else{
