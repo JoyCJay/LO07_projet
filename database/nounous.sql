@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: 2018-05-21 16:32:04
--- 服务器版本： 5.7.19
--- PHP Version: 7.1.9
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  Dim 27 mai 2018 à 13:53
+-- Version du serveur :  5.7.19
+-- Version de PHP :  7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nounous`
+-- Base de données :  `nounous`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `administrateur`
+-- Structure de la table `administrateur`
 --
 
 DROP TABLE IF EXISTS `administrateur`;
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `contrat`
+-- Structure de la table `contrat`
 --
 
 DROP TABLE IF EXISTS `contrat`;
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `contrat` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `enfant`
+-- Structure de la table `enfant`
 --
 
 DROP TABLE IF EXISTS `enfant`;
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `enfant` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `enfant`
+-- Déchargement des données de la table `enfant`
 --
 
 INSERT INTO `enfant` (`id_enfant`, `prenom`, `parents`, `date_de_naissance`, `restrictions_alimentaires`) VALUES
@@ -91,7 +91,7 @@ INSERT INTO `enfant` (`id_enfant`, `prenom`, `parents`, `date_de_naissance`, `re
 -- --------------------------------------------------------
 
 --
--- 表的结构 `login`
+-- Structure de la table `login`
 --
 
 DROP TABLE IF EXISTS `login`;
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 ) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `login`
+-- Déchargement des données de la table `login`
 --
 
 INSERT INTO `login` (`id_utilisateur`, `login`, `mot_de_passe`, `type`) VALUES
@@ -122,7 +122,7 @@ INSERT INTO `login` (`id_utilisateur`, `login`, `mot_de_passe`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `nounous`
+-- Structure de la table `nounous`
 --
 
 DROP TABLE IF EXISTS `nounous`;
@@ -134,7 +134,6 @@ CREATE TABLE IF NOT EXISTS `nounous` (
   `prenom` varchar(20) NOT NULL,
   `age` smallint(3) NOT NULL,
   `ville` varchar(20) NOT NULL,
-  `disponibilite` varchar(7) DEFAULT NULL,
   `situation` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `portable` bigint(8) NOT NULL,
@@ -142,23 +141,28 @@ CREATE TABLE IF NOT EXISTS `nounous` (
   `langues` tinytext NOT NULL,
   `presentation` tinytext,
   `experience` tinytext,
+  `heure_debut` int(3) DEFAULT NULL,
+  `heure_fin` int(3) DEFAULT NULL,
+  `date_debut` date DEFAULT NULL,
+  `date_fin` date DEFAULT NULL,
+  `jour` varchar(75) DEFAULT NULL,
   PRIMARY KEY (`login`),
   UNIQUE KEY `id_nounous` (`id_nounous`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `nounous`
+-- Déchargement des données de la table `nounous`
 --
 
-INSERT INTO `nounous` (`id_nounous`, `login`, `mot de passe`, `nom`, `prenom`, `age`, `ville`, `disponibilite`, `situation`, `email`, `portable`, `photo`, `langues`, `presentation`, `experience`) VALUES
-(5, 'solange', 'abc12345', 'SONG', 'Xiaotong', 22, 'troyes', '', 'normal', 'solangeie@163.com', 767219907, '', 'chinois,englais', 'prudence, sympa et tres patience', '3 ans '),
-(4, 'whq', 'whq', 'wang', 'huiqi', 22, 'troyes', 'a', 'candidat', 'huiqi.wang@163.com', 743267883, './database/photos/whq', 'Francais,Chinois', '', 'pas experience'),
-(3, 'ye', 'sdgr', 'Ye', 'xingyu', 21, 'paris', '', 'normal', 'xingyu.ye@163.com', 643215532, '', 'englais', '', NULL);
+INSERT INTO `nounous` (`id_nounous`, `login`, `mot de passe`, `nom`, `prenom`, `age`, `ville`, `situation`, `email`, `portable`, `photo`, `langues`, `presentation`, `experience`, `heure_debut`, `heure_fin`, `date_debut`, `date_fin`, `jour`) VALUES
+(5, 'solange', 'abc12345', 'SONG', 'Xiaotong', 22, 'troyes', 'normal', 'solangeie@163.com', 767219907, '', 'chinois,englais', 'prudence, sympa et tres patience', '3 ans ', 14, 17, '2018-06-01', '2018-06-30', 'tous les jours travaillÃ©s (Lu, Ma, Me, Je, Ve)'),
+(4, 'whq', 'whq', 'wang', 'huiqi', 22, 'troyes', 'bloquer', 'huiqi.wang@163.com', 743267883, './database/photos/whq', 'Francais,Chinois', '', 'pas experience', NULL, NULL, NULL, NULL, NULL),
+(3, 'ye', 'sdgr', 'Ye', 'xingyu', 21, 'paris', 'normal', 'xingyu.ye@163.com', 643215532, '', 'englais', '', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `parents`
+-- Structure de la table `parents`
 --
 
 DROP TABLE IF EXISTS `parents`;
@@ -176,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `parents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `parents`
+-- Déchargement des données de la table `parents`
 --
 
 INSERT INTO `parents` (`id_parents`, `login`, `mot de passe`, `nom`, `ville`, `email`, `portable`, `photo`) VALUES
@@ -184,18 +188,18 @@ INSERT INTO `parents` (`id_parents`, `login`, `mot de passe`, `nom`, `ville`, `e
 (102, 'masson', '12345', 'Masson', 'troyes', 'masson@gmail.com', 743567732, './database/photos/6d2e5ca91fd34a5788d2e19de78f7ac4.jpg');
 
 --
--- 限制导出的表
+-- Contraintes pour les tables déchargées
 --
 
 --
--- 限制表 `contrat`
+-- Contraintes pour la table `contrat`
 --
 ALTER TABLE `contrat`
   ADD CONSTRAINT `nounous_fk` FOREIGN KEY (`nounous`) REFERENCES `nounous` (`login`),
   ADD CONSTRAINT `parents_fk` FOREIGN KEY (`parents`) REFERENCES `parents` (`login`);
 
 --
--- 限制表 `enfant`
+-- Contraintes pour la table `enfant`
 --
 ALTER TABLE `enfant`
   ADD CONSTRAINT `parents_KF` FOREIGN KEY (`parents`) REFERENCES `parents` (`login`) ON DELETE NO ACTION ON UPDATE NO ACTION;

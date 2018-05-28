@@ -149,7 +149,7 @@
             </div>
             <div id="collapseThree" class="collapse">
               <div class="card-block">
-              <a class="B" href="#admin3-1" onclick="afficherC('admin3-1');">Repartition de nounous</a></br>
+              <a class="B" href="#admin3-1" onclick="afficherC('piechart');">Repartition de nounous</a></br>
               <a>b.Chiffre d’affair</a></br>
               <a>c.Tendance du site</a></br>
               <a>d.Boite de message</a></br>
@@ -167,28 +167,19 @@
 
   <div id="admin1-2" class="admin_function" style="display: none;">
 
-    <form enctype="multipart/form-data" method="post" name="form1" action = '#admin1-2'>
-    <input type="hidden" name="filtrer" value="true">
-    <div class="Nom form_left form_l1">
-        <label for="Nom">Nom:</label>
-        <input type="text" id="Nom" name="Nom" placeholder="Enter Nom" style="width:200px;">
-    </div>
-    <div class="Prenom form_right form_l1">
-        <label for="Prenom">Prenom:</label>
-        <input type="text" id="Prenom" name="Prenom" placeholder="Enter Prenom" style="width:200px;">
-    </div>
+    <form enctype="multipart/form-data" method="post" name="form1" action = 'filtrer_nounous.php'>
+    <div class="form_left form_l1">
+    <h2>Recherche floue</h2></div>
     <div class="Ville form_left form_l2">
         <label for="Ville">Ville:</label>
         <input type="text" id="Ville" name="Ville" placeholder="Enter Ville" style="width:200px;">
     </div>
-
     <div class="Email form_left form_l3">
-        <label for="Email">Email:</label>
-        <input type="email" id="Email" name="Email" placeholder="Enter Email" style="width:200px;">
+        <label>Age:</label>
+        <input type="number" id="Age min" name="min" placeholder="Age min" style="width:200px;">
     </div>
     <div class="Portable form_right form_l3">
-        <label for="Portable">Portable:</label>
-        <input type="number" id="Portable" name="Portable" placeholder="Portable" style="width:200px;">
+        <input type="number" id="Age max" name="max" placeholder="Age max" style="width:200px;">
     </div>
 
     <div class="Language form_left form_l4">
@@ -197,16 +188,35 @@
 		    <input type="checkbox" name="Language[]" value="Allemande">Allemande
 		    <input type="checkbox" name="Language[]" value="Chinois">Chinois
     </div>    
-
+ 
     <div class="form_left form_l5">
+      <label for="dd">Date debut:</label>
+      <input type="date"  id="dd" name="dd" >
+    </div>
+
+    <div class="form_right form_l5">
+      <label for="df">Date de fin:</label>
+      <input type="date"  id="df" name="df" >
+    </div>
+    <div class="form_left form_l6">
+      <h3>Recherche précise</h3>
+    </div>
+    <div class="Nom form_left form_l7">
+        <label for="Nom">Nom:</label>
+        <input type="text" id="Nom" name="Nom" placeholder="Enter Nom" style="width:200px;">
+    </div>
+    <div class="Prenom form_right form_l7">
+        <label for="Prenom">Prenom:</label>
+        <input type="text" id="Prenom" name="Prenom" placeholder="Enter Prenom" style="width:200px;">
+    </div>
+    <div class="form_left form_l8">
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-danger">Reset</button>
     </div>
     </form>
   </div>
 
-  <div id="admin3-1" class="admin_function" style="display: none;">
-    <div id="piechart"></div>
+  <div id="piechart" class="admin_function" style="display: none,width:500px;">
   </div>
 
 </div>
