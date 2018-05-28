@@ -104,7 +104,7 @@
 </div>
 
 <div class="container" id="B">
-    <img id='profil' src="img/profil.jpg">
+    <img id='profil' src="./img/profil.png">
     <div id="profil_info">
       <?php session_start();
         echo "Bonjour!  ";

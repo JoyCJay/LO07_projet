@@ -33,12 +33,12 @@
           <div class="card" id="panel_compte">
             <div class="card-header">
               <a class="card-link B" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                Gerer mes compts
+                Gerer mon compte
               </a>
             </div>
             <div id="collapseOne" class="collapse">
               <div class="card-block">
-                <a class="B" href="./disponibilite.html">Déclarer mes disponibilité</a></br>
+                <a class="B" href="./disponibilite.php">Déclarer mes disponibilité</a></br>
                 <a class="B" href="">Mes informations</a>
               </div>
             </div>
