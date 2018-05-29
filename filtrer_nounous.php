@@ -1,8 +1,4 @@
 <?php
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
-
     function filtrer_nounous_DBR(){
         echo "<table class='table table-striped'>";
         echo "<thead>";
@@ -18,7 +14,13 @@
         echo "<tbody>";
         //table dynamique
         $sql_sentence="select * from nounous where situation ='normal'";
-        if ($_POST['Nom']=='' and $_POST['Prenom']=='' and $_POST['min']<0 and $_POST['max']<0 and $_POST['Language']=='' and $_POST['dd']=='' and $_POST['df']=='') {
+        if ($_POST['Nom']=='' and 
+            $_POST['Prenom']=='' and 
+            $_POST['min']<0 and 
+            $_POST['max']<0 and 
+            $_POST['Language']=='' and 
+            $_POST['dd']=='' and 
+            $_POST['df']=='') {
             echo "<h4>Aucune condition, Afficher tout</h4>";
         }
         else{
@@ -30,7 +32,19 @@
             }
             if ($_POST['Ville']!='') {
                 $sql_sentence=$sql_sentence." and ville='".$_POST['Ville']."'";
-            }  
+            }
+            if ($_POST['Nom']!='') {
+                $sql_sentence=$sql_sentence." and nom='".$_POST['Nom']."'";
+            }
+            if ($_POST['Prenom']!='') {
+                $sql_sentence=$sql_sentence." and prenom='".$_POST['Prenom']."'";
+            }
+            if ($_POST['dd']!='') {
+                $sql_sentence=$sql_sentence." and date_debut<'".$_POST['dd']."'";
+            } 
+            if ($_POST['df']!='') {
+                $sql_sentence=$sql_sentence." and date_fin>'".$_POST['df']."'";
+            } 
             //where langues REGEXP ".*francais.*chinois";
             if ($_POST['Language']!='') {
                 $SQL_regex = ".*".implode(".*",$_POST['Language']);
@@ -44,7 +58,6 @@
             }  
         }
         $sql_sentence=$sql_sentence.";";
-        echo $sql_sentence;
         print("<br/>");
         $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
         $DB_result = mysqli_query($DB_conn,$sql_sentence); 
@@ -56,7 +69,7 @@
                 print("<td>".$temp["age"]."</td>");
                 print("<td>Note</td>");
                 print("<td>".$temp["langues"]."</td>");
-                print("<td><a href='nounous_detail.php?id_nounous=".$temp['id_nounous']."'>Detail</a></td>");
+                print("<td><a href='nounous_detail.php?id_nounous=".$temp['id_nounous']."'target='_blank'>Detail</a></td>");
                 print("</tr>");
             }
         }

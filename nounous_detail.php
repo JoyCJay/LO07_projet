@@ -1,15 +1,9 @@
 <?php
     $sql_sentence="select * from nounous where id_nounous=".$_GET['id_nounous'].";";
-    print("<br/>");
     $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
     $DB_result = mysqli_query($DB_conn,$sql_sentence); 
     if ($DB_result){
         $temp = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC);
-        /*
-        echo "<pre>";
-        print_r($temp);
-        echo "</pre>";
-        */
     }
     mysqli_close($DB_conn);
 ?>
@@ -30,12 +24,47 @@
 </head>
 <body>
 
-<div class="container" id="C" style="position:absolute;left:350px;top:220px;height:750px;width:800px;">
+<div class="container" id="B" style="width:250px;position:absolute;top:150px;left:0px;">
+    <h4>les grands étapes</h4>
+    <ul>
+        <li>
+            <h6>Step1:</h6>
+            <p>Intéressez cette nounous?Contacter!</p>
+        </li>
+        <li>
+            <h6>Step2:</h6>
+            <p>Négocier détails</p>
+            <p>Une fois choisit,cette nounous ne peut pas servir pour l'autre client dans ce jour</p>
+        </li>
+        <li>
+            <h6>Step3:</h6>
+            <p>Donnez nounous vos infos:</p>
+            <ul>
+                <li>Nom</li>
+                <li>Prenom</li>
+                <li>Id</li>
+            </ul>
+        </li>
+        <li>
+            <h6>Step4:</h6>
+            <p>C'est nounous qui propose le contrat à nous!</p>
+        </li>
+        <li>
+            <h6>Step5:</h6>
+            <p>Allez dans vos espaces perso(contrat)</p>
+        </li>
+        <li>
+            <h6>Step6:</h6>
+            <p>Payer et commenter</p>
+        </li>
+    </ul>
+</div>
+<div class="container" id="C" style="position:absolute;left:250px;top:150px;width:800px;">
 <ul id="nounous_detail">
     <li>
         <h2>Info personnelle</h2>
         <div class="row">
-            <img src="./img/profil.png" style="width:120px;height:120px;">
+            <img src="<?php echo $temp['photo'] ?>" style="width:120px;height:120px;">
             <span style="position:relative;top:30px;">
                 <div class="col">Nom:<?php echo $temp['nom'] ?></div>
                 <div class="col">Prenom:<?php echo $temp['prenom'] ?></div>
@@ -50,7 +79,6 @@
     </li>
     <li style="width:600px;">
         <h2>Disponibilite</h2>
-        <?php echo $temp['jour']; ?>
         <table class="table table-hover">
             <tr>
                 <th>Creneau</th>
@@ -65,14 +93,16 @@
 
             <?php
                 $creneau=array("8:00-10:00","10:00-12:00","12:00-14:00","14:00-16:00","16:00-18:00","18:00-20:00"); 
+                $time=6;
                 foreach ($creneau as $h2){
+                    $time=$time+2;
                     echo "<tr>";
                     echo "<td>".$h2."</td>";
                     for ($i=1;$i<=7;$i=$i+1){  
-                        if (strpos($temp['jour'],strval($i))) {
-                            echo "<td><img src='./img/occu.png' style='width:15px;height:15px;'/></td>";
-                        } else {
+                        if (strstr($temp['jour'],strval($i)) and intval($temp['heure_debut'])<=$time and intval($temp['heure_fin'])>=$time+2) {
                             echo "<td><img src='./img/disp.png' style='width:15px;height:15px;'/></td>";
+                        } else {
+                            echo "<td><img src='./img/occu.png' style='width:15px;height:15px;'/></td>";
                         }
                     }
                     echo "</tr>";

@@ -5,7 +5,7 @@ function login_DBR($id,$mdp){
     if ($DB_result){
         while($temp = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC)){
             if ($temp['login']==$id and $temp['mot_de_passe']==$mdp){
-                return $temp['type'];
+                return $temp;
             }
         }
     }
@@ -13,8 +13,7 @@ function login_DBR($id,$mdp){
     return "false";
 }
 session_start();
-$_SESSION['login']= $_POST['id'];
-$_SESSION['type']=login_DBR($_POST['id'],$_POST['mdp']);
+$_SESSION = login_DBR($_POST['id'],$_POST['mdp']);
     if ($_SESSION['type']=='nounous'){
         $url="http://localhost/LO07_projet/nounous.php";;
     }
