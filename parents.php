@@ -22,6 +22,38 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/self.js"></script>
+    <style>
+         .rating {
+        font-size: 0;
+        display: table;
+    }
+
+    .rating > label {
+        color: #ddd;
+        float: right;
+    }
+
+    .rating > label:before {
+        padding: 5px;
+        font-size: 24px;
+        line-height: 1em;
+        display: inline-block;
+        content: "★";
+    }
+
+    .rating > input:checked ~ label,
+    .rating:not(:checked) > label:hover,
+    .rating:not(:checked) > label:hover ~ label {
+        color: #FFD700;
+    }
+
+    .rating > input:checked ~ label:hover,
+    .rating > label:hover ~ input:checked ~ label,
+    .rating > input:checked ~ label:hover ~ label {
+        opacity: 0.5;
+    }
+    </style>
+
     <!--
         http://localhost/LO07_projet/parents.php
     -->
@@ -82,7 +114,7 @@
           <div class="card" id="panel_histoire">
             <div class="card-header">
               <a class="collapsed card-link B" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-              Gerer mes réservations
+              Chercher une nounous
             </a>
             </div>
             <div id="collapseTwo" class="collapse">
@@ -96,12 +128,13 @@
           <div class="card" id="panel_setting">
             <div class="card-header">
               <a class="collapsed card-link B" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                Setting
+                Mes réservations
               </a>
             </div>
             <div id="collapseThree" class="collapse">
               <div class="card-block">
-                collapseThree
+                <a class="B" href="#mes reser" onclick="afficherC1('mes_reser');">Tous mes résercations</a><br/>
+                <a class="B" href="#evaluation" onclick="afficherC1('evaluer');">Evaluer le nounous</a><br/>
               </div>
             </div>
           </div>
@@ -263,8 +296,71 @@
     </div>
   </form>
   </div>
+    <div class="parent_function" style="display:none" id="mes_reser">
+    </div>
+    <div class="parent_function" style="display:none" id="evaluer" >
+    <h3> Evaluer vos réservations</h3><br/>
+    <form   method="post" name="form4" action = '#'>
+    <fieldset> 
+    <div class="form-group row">
+    <label for="id_contrat" class="col-sm-4 form-control-label">ID contrat:</label>
+    <div class="col-sm-8">
+      <input type="text"  id="id_contrat" name="id_contrat" placeholder="id contrat">
+    </div>
+    </div>
+    
+    <div class="form-group row">
+    <label for="note" class="col-sm-4 form-control-label">Note:</label>
+    <div class="col-sm-8">
+      <div class="rating">
+        <input type="radio" id="star5" name="rating" value="5" hidden/>
+        <label for="star5"></label>
+        <input type="radio" id="star4" name="rating" value="4" hidden/>
+        <label for="star4"></label>
+        <input type="radio" id="star3" name="rating" value="3" hidden/>
+        <label for="star3"></label>
+        <input type="radio" id="star2" name="rating" value="2" hidden/>
+        <label for="star2"></label>
+        <input type="radio" id="star1" name="rating" value="1" hidden/>
+        <label for="star1"></label>
+    </div>
+    </div>
+    </div>
+        <div class="form-group row">
+    <label for="evaluation" class="col-sm-4 form-control-label">Votre évaluation:</label>
+    <div class="col-sm-8">
+    <textarea id="evaluation" name="evaluation" style="height:260px ;width: 400px;"></textarea>
+    </div>
+    </div>
+    <div class="form-group ">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+       
+    </div>
+    </fieldset>
+    </form>
+    <?php
+    
+$id_parents= $_SESSION['id_parents'];
+ function ajouter_evaluer(){
+       global $_POST;
+       global $id_parents;
+       if(isset($_POST['rating'])&&isset($_POST['evaluation'])&&isset($_POST['id_contrat'])){
+       $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+        $sql = "UPDATE `contrat` SET `note`= '".$_POST['rating']."',`evaluation`= '".$_POST['evaluation']."' WHERE `id_contrat`='".$_POST['id_contrat']."' ";
+        echo $sql;
+        $result = mysqli_query($DB_conn,$sql);  
+        echo "<br/>";
+        echo 'Evaluer votre réservation succes !';    
+        mysqli_close($DB_conn);
+       }
+    }
+ ajouter_evaluer();
 
+  ?>
+    </div>
 </div>
 
 </body>
+
 </html>

@@ -204,7 +204,17 @@
 
 
   <div id="mes_contrat" class="admin_function" style="display: none;">
-    tous mes contrats
+    <?php
+      echo "<h3>Mes réservations</h3>";
+      $sql_sentence="select * from contrat where nounous=".$_SESSION['login'].";";
+      $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+      $DB_result = mysqli_query($DB_conn,$sql_sentence); 
+      if ($DB_result){
+      $contrat = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC);
+  }
+  mysqli_close($DB_conn);
+     
+      ?>
   </div>
 </div>
 
