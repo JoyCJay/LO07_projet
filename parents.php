@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,17 +11,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/self.js"></script>
-    <script>
-function enfants(){
-document.getElementById("div1").style.display="block";
-document.getElementById("div2").style.display="none";
-};
-function ajouter()
-{
-document.getElementById("div2").style.display="block";
-document.getElementById("div1").style.display="none";
-}
-</script>
     <!--
         http://localhost/LO07_projet/parents.php
     -->
@@ -44,7 +32,6 @@ document.getElementById("div1").style.display="none";
     <!-- Tab panes -->
     <div class="tab-content">
         <div id="Introduction" class="container tab-pane active"><br>
-   
             <p>
             Nounous & Moi a été fondée en 2018 et a été largement saluée par les clients depuis sa création. Permettre aux clients de sélectionner leurs nounous sans quitter leur domicile et effectuer les opérations
             </p>
@@ -61,23 +48,22 @@ document.getElementById("div1").style.display="none";
     <a  href="http://localhost/LO07_projet/index.html"><img class='logo' src="img/logo.png"></a>
 </div>
 
-
 <div class="container" id="B">
     <img id='profil' src="img/profil.jpg">
     <div id="profil_info">
-        <?php session_start(); echo "Bonjour, <br />".$_SESSION['login'];?>
+        <?php session_start(); echo "Bonjour, <br />".$_SESSION['login']."! parent";?>
     </div>
     <div id="accordion" class="panel_B">
           <div class="card" id="panel_compte">
             <div class="card-header">
               <a class="card-link B" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                Gerer mes compt
+                Gerer mon compte
               </a>
             </div>
             <div id="collapseOne" class="collapse">
               <div class="card-block">
-                <a class="B" href="#" onclick="enfants()">Mes informations</a></br>
-                <a class="B" href="#" onclick="ajouter()">Ajouter un(e) enfants</a>
+                <a class="B" href="#mes info" onclick="afficherC1('div1');">Mes informations</a></br>
+                <a class="B" href="#ajouter enfant" onclick="afficherC1('div2');">Ajouter un(e) enfants</a>
               </div>
             </div>
           </div>
@@ -90,7 +76,8 @@ document.getElementById("div1").style.display="none";
             </div>
             <div id="collapseTwo" class="collapse">
               <div class="card-block">
-              <a class="B" href="#" onclick="contrats()">Mes réservations</a>
+                <a class="B" href="#filtrer nounous" onclick="afficherC('filtrer nounous');">Filtrer nounous</a><br/>
+    
               </div>
             </div>
           </div>
@@ -110,10 +97,10 @@ document.getElementById("div1").style.display="none";
       </div>
 </div>
 
-<div class="container  " id="C">
-    <div  class="myform" style="display:none" id="div1">
-        <h3> Mes informations</h3> 
-     <?php
+<div class="container myform" id="C">
+  <div  class="parent_function" style="display:none" id="div1">
+    <h3> Mes informations</h3> 
+    <?php
       
      $login=$_SESSION['login'];
       function list_enfant(){
@@ -140,6 +127,9 @@ document.getElementById("div1").style.display="none";
                   echo "</li>";
                   echo "<li>";
                   echo "Portable: ".$temp1['portable'];
+                  echo "</li>";
+                  echo "<li>";
+                  echo "ID: ".$temp1['id_parents'];
                   echo "</li>";
                   echo "</ul>";
             }
@@ -171,14 +161,12 @@ document.getElementById("div1").style.display="none";
             echo "</tbody>"; 
             echo "</table>";
         mysqli_close($DB_conn);
-  }
-  list_enfant();
-  ?>
-       
-    </div>
-    <div style="display:none" id="div2">
-        <h3> Ajouter un(e) enfant</h3> 
-      <br />
+        }
+        list_enfant();
+      ?> 
+  </div>
+  <div class="parent_function" style="display:none" id="div2">
+    <h3> Ajouter un(e) enfant</h3><br/>
     <form  class="myform" method="post" name="form3" action = './ajouter_enfant.php'>
     <fieldset>
        
@@ -211,9 +199,60 @@ document.getElementById("div1").style.display="none";
         <button type="reset" class="btn btn-danger">Reset</button>
        
     </div>
-     </fieldset>
-  </form>
+    </fieldset>
+    </form>
+  </div>
+
+  <div class="parent_function" id="filtrer nounous">
+  <form enctype="multipart/form-data" method="post" name="form1" action = 'filtrer_nounous.php'>
+    <div class="form_left form_l1">
+    <h2>Recherche floue</h2></div>
+    <div class="Ville form_left form_l2">
+        <label for="Ville">Ville:</label>
+        <input type="text" id="Ville" name="Ville" placeholder="Enter Ville" style="width:200px;">
     </div>
+    <div class="Email form_left form_l3">
+        <label>Age:</label>
+        <input type="number" id="Age min" name="min" placeholder="Age min" style="width:200px;">
+    </div>
+    <div class="Portable form_right form_l3">
+        <input type="number" id="Age max" name="max" placeholder="Age max" style="width:200px;">
+    </div>
+
+    <div class="Language form_left form_l4">
+        <input type="checkbox" name="Language[]" value="Francais">Français
+		    <input type="checkbox" name="Language[]" value="Anglais">Anglais
+		    <input type="checkbox" name="Language[]" value="Allemande">Allemande
+		    <input type="checkbox" name="Language[]" value="Chinois">Chinois
+    </div>    
+ 
+    <div class="form_left form_l5">
+      <label for="dd">Date debut:</label>
+      <input type="date"  id="dd" name="dd" >
+    </div>
+
+    <div class="form_right form_l5">
+      <label for="df">Date de fin:</label>
+      <input type="date"  id="df" name="df" >
+    </div>
+    <div class="form_left form_l6">
+      <h3>Recherche précise</h3>
+    </div>
+    <div class="Nom form_left form_l7">
+        <label for="Nom">Nom:</label>
+        <input type="text" id="Nom" name="Nom" placeholder="Enter Nom" style="width:200px;">
+    </div>
+    <div class="Prenom form_right form_l7">
+        <label for="Prenom">Prenom:</label>
+        <input type="text" id="Prenom" name="Prenom" placeholder="Enter Prenom" style="width:200px;">
+    </div>
+    <div class="form_left form_l8">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </div>
+  </form>
+  </div>
+
 </div>
 
 </body>

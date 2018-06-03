@@ -28,7 +28,11 @@
         print("<td>".$temp["email"]."</td>");
         print("<td>Note</td>");
         print("<td>".$temp["situation"]."</td>");
-        print("<td><a href='admin_do.php?id_nounous=".$temp['id_nounous']."&situation=".$temp['situation']."'>$do</a></td>");
+        print("<td><a href='admin_do.php?id_nounous=".$temp['id_nounous']."&situation=".$temp['situation']."'>$do</a>");
+        if ($temp["situation"]=="candidat"){
+          print("/<a href='admin_do.php?id_nounous=".$temp['id_nounous']."&sup=1'>Suprimer</a>");
+        }
+        print("</td>");
         print("</tr>");
       }
     }
@@ -166,8 +170,7 @@
   </div>
 
   <div id="admin1-2" class="admin_function" style="display: none;">
-
-    <form enctype="multipart/form-data" method="post" name="form1" action = 'filtrer_nounous.php'>
+  <form enctype="multipart/form-data" method="post" name="form1" action = 'filtrer_nounous.php'>
     <div class="form_left form_l1">
     <h2>Recherche floue</h2></div>
     <div class="Ville form_left form_l2">
@@ -213,7 +216,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-danger">Reset</button>
     </div>
-    </form>
+  </form>
   </div>
 
   <div id="piechart" class="admin_function" style="display: none,width:500px;">

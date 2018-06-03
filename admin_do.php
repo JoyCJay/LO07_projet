@@ -8,7 +8,13 @@
     } else {
         $situation='bloquer';
     }
-    $sql_sentence="UPDATE nounous SET situation ='"."$situation' WHERE id_nounous =".$_GET['id_nounous']." ;";
+
+    if ($_GET['sup']==1) {
+        $sql_sentence="DELETE FROM nounous WHERE id_nounous =".$_GET['id_nounous']." ;";
+    }
+    else{
+        $sql_sentence="UPDATE nounous SET situation ='"."$situation' WHERE id_nounous =".$_GET['id_nounous']." ;";
+    }
     echo $sql_sentence;
     $DB_result = mysqli_query($DB_conn,$sql_sentence); 
     if ($DB_result){

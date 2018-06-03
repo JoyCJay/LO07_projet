@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $sql_sentence="select * from nounous where id_nounous=".$_GET['id_nounous'].";";
     $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
     $DB_result = mysqli_query($DB_conn,$sql_sentence); 
@@ -6,6 +7,7 @@
         $temp = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC);
     }
     mysqli_close($DB_conn);
+    $_SESSION=$_SESSION+$temp;
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,6 +60,7 @@
             <p>Payer et commenter</p>
         </li>
     </ul>
+    <button class="btn btn-primary" onClick="location.href='./proposer_contrat.php'">Proposer</button>
 </div>
 <div class="container" id="C" style="position:absolute;left:250px;top:150px;width:800px;">
 <ul id="nounous_detail">

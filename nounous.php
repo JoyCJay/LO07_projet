@@ -59,7 +59,6 @@
             </div>
             <div id="collapseTwo" class="collapse">
               <div class="card-block">
-                <a class="B" href="#" onclick="afficherC('proposer_contrat');">Proposer le contrat</a></br>
                 <a class="B" href="#" onclick="afficherC('mes_contrat');">Tous mes contrats</a>
               </div>
             </div>
@@ -96,6 +95,9 @@
       echo "</li>";
       echo "<li>";
       echo "Age: ".$_SESSION['age'];
+      echo "</li>";
+      echo "<li>";
+      echo "ID: ".$_SESSION['id_nounous'];
       echo "</li>";
       echo "<li>";
       echo "Ville: ".$_SESSION['ville'];
@@ -177,101 +179,7 @@
         </form>
   </div>
 
-  <div id="proposer_contrat" class="admin_function" style="display: none;">
-    <form role="form" action="#" method="post" name="contrat" >
-            <fieldset>
-                <legend>Proposer le contrat!</legend>
 
-                <div class="form-group row">
-                  <label for="Partie_A" class="col-sm-4 form-control-label">Partie A(Parent)</label>
-                  <span id="Partie_A">
-                      <div class="col">Nom:
-                      <input type="text" id="NomA" name="NomA" placeholder="Nom de A" style="width:200px;" required="required">
-                      </div>
-                      <div class="col">Prenom:
-                      <input type="text" id="PrenomA" name="PrenomA" placeholder="Prenom de A" style="width:200px;" required="required">
-                      </div>
-                      <div class="col">id_utilisateur:
-                      <input type="text" id="IdA" name="IdA" placeholder="id de A" style="width:200px;" required="required">
-                      </div>
-                  </span>
-                  <label for="Partie_B" class="col-sm-4 form-control-label">Partie B(Nounous)</label>
-                  <span id="Partie_B">
-                    <div class="col">Nom:
-                    <input type="text" id="NomB" name="NomB" placeholder="Nom de B" style="width:200px;" required="required">
-                    </div>
-                    <div class="col">Prenom:
-                    <input type="text" id="PrenomB" name="PrenomB" placeholder="Prenom de B" style="width:200px;" required="required">
-                    </div>
-                    <div class="col">id_utilisateur:
-                    <input type="text" id="IdB" name="IdB" placeholder="id de B" style="width:200px;" required="required">
-                    </div>
-                  </span>
-                </div>                
-                <div class="form-group row">
-                <label for="dd" class="col-sm-4 form-control-label">Date début:</label>
-                <div class="col-sm-8">
-                <input type="date"  id="dd" name="dd" > 
-                </div></div>
-                <div class="form-group row">
-                <label for="df" class="col-sm-4 form-control-label">Date fin:</label>
-                <div class="col-sm-8">
-                <input type="date"  id="df" name="df" > 
-                </div></div>
-
-                <label for="jour" class=" form-control-label">Jours de travaille:</label>
-                <ul >
-                    <?php
-                      foreach (explode(",",$_SESSION['jour']) as $day) {
-                        if ($day=='1') {
-                          echo "<li><input type='checkbox' id='jour[]' name='jour[]' value='1' /> tous les lundi</li>";
-                        }
-                        if ($day=='2') {
-                          echo "<li><input type='checkbox' id='jour[]' name='jour[]' value='2' /> tous les mardi</li>";
-                        }
-                        if ($day=='3') {
-                          echo "<li><input type='checkbox' id='jour[]' name='jour[]' value='3' /> tous les mercredi</li>";
-                        }
-                        if ($day=='4') {
-                          echo "<li><input type='checkbox' id='jour[]' name='jour[]' value='4' /> tous les jeudi</li>";
-                        }
-                        if ($day=='5') {
-                          echo "<li><input type='checkbox' id='jour[]' name='jour[]' value='5' /> tous les vendredi</li>";
-                        }
-                        if ($day=='6') {
-                          echo "<li><input type='checkbox' id='jour[]' name='jour[]' value='6' /> tous les samedi</li>";
-                        }
-                        if ($day=='7') {
-                          echo "<li><input type='checkbox' id='jour[]' name='jour[]' value='7' /> tous les dimanche</li>";
-                        }
-                      }
-
-                    ?>
-                </ul>
-
-                <div class="form-group row">
-                  <label for="service" class="col-sm-4 form-control-label">Type de service:</label>
-                  <div class="col-sm-8">
-                    <select name="service" id="service" class="form-control" style="width:200px;">
-                      <option value="babysit">Babysit</option>
-                      <option value="langue">Langue</option>
-                      <option value="reguliere">Reguiliere</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="num_enfant" class="col-sm-4 form-control-label">Nombre d'enfants:</label>
-                  <div class="col-sm-8">
-                    <input type="number"  id="num_enfant" name="num_enfant"> 
-                  </div>
-                </div>
-                <div class="form-group ">
-                  <button type="submit" class="btn btn-primary ">Submit</button>
-                  <button type="reset" class="btn btn-danger">Reset</button>
-                </div>
-            </fieldset>
-        </form>
-  </div>
 
   <div id="mes_contrat" class="admin_function" style="display: none;">
     tous mes contrats
