@@ -1,3 +1,14 @@
+<?php
+  session_start();
+  $sql_sentence="select * from parents where id_parents=".$_SESSION['id_utilisateur'].";";
+  $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+  $DB_result = mysqli_query($DB_conn,$sql_sentence); 
+  if ($DB_result){
+      $parents = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC);
+  }
+  mysqli_close($DB_conn);
+  $_SESSION=$_SESSION+$parents;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,9 +60,9 @@
 </div>
 
 <div class="container" id="B">
-    <img id='profil' src="img/profil.jpg">
+    <img id='profil' src="<?php echo $_SESSION['photo'] ?>" style="width:120px;height:120px;">
     <div id="profil_info">
-        <?php session_start(); echo "Bonjour, <br />".$_SESSION['login']."! parent";?>
+        <?php  echo "Bonjour, <br />".$_SESSION['login']."! parent";?>
     </div>
     <div id="accordion" class="panel_B">
           <div class="card" id="panel_compte">
@@ -76,7 +87,7 @@
             </div>
             <div id="collapseTwo" class="collapse">
               <div class="card-block">
-                <a class="B" href="#filtrer nounous" onclick="afficherC('filtrer nounous');">Filtrer nounous</a><br/>
+                <a class="B" href="#filtrer nounous" onclick="afficherC1('filtrer nounous');">Filtrer nounous</a><br/>
     
               </div>
             </div>
@@ -167,7 +178,7 @@
   </div>
   <div class="parent_function" style="display:none" id="div2">
     <h3> Ajouter un(e) enfant</h3><br/>
-    <form  class="myform" method="post" name="form3" action = './ajouter_enfant.php'>
+    <form   method="post" name="form3" action = './ajouter_enfant.php'>
     <fieldset>
        
     <div class="form-group row">

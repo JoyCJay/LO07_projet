@@ -67,12 +67,12 @@
           <div class="card" id="panel_setting">
             <div class="card-header">
               <a class="collapsed card-link B" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                Setting
+               Mes disponibilités
               </a>
             </div>
             <div id="collapseThree" class="collapse">
               <div class="card-block">
-                collapseThree
+                <a class="B" href="#" onclick="afficherC('mes_dispo');">Mes disponibilités</a>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@
 
 <div class="container myform" id="C"> 
   <div id="mes_info" class="admin_function" style="display: none;">
-    <h3>Mes info</h3>
+    <h3>Mes informations</h3>
     <?php
     echo "<ul>";
       echo "<li>";            
@@ -114,28 +114,50 @@
       echo "<li>";
       echo "Langues: ".$_SESSION['langues'];
       echo "</li>";
+
       echo "<li>";
       echo "Mes expériences: ".$_SESSION['experience'];
       echo "</li>";
-      echo "</ul>";echo "<h3>Mes disponibilités</h3>";echo "<ul>"; echo "<li>";
-      echo "Heure début: ".$_SESSION['heure_debut']." h";
-      echo "</li>";
-      echo "<li>";
-      echo "Heure fin: ".$_SESSION['heure_fin']." h";
-      echo "</li>";
-      echo "<li>";
-      echo "Date début: ".$_SESSION['date_debut'];
-      echo "</li>";
-      echo "<li>";
-      echo "Date fin: ".$_SESSION['date_fin'];
-      echo "</li>";
-      echo "<li>";
-      echo "Jours: ".$_SESSION['jour'];
-      echo "</li>";echo "</ul>";
+      echo "</ul>";
+      
       ?>
   </div>
+    <div id="mes_dispo" class="admin_function" style="display: none;">
+        <?php
+    echo "<h3>Mes disponibilités</h3>";
+      echo "<table class='table table-hover'>";
+      echo "<tr>";
+      echo  "       <th>Creneau</th>
+                <th>Lun.</th>
+                <th>Mar.</th>
+                <th>Mer.</th>
+                <th>Jeu.</th>
+                <th>Ven.</th>
+                <th>Sam.</th>
+                <th>Dim.</th>
+            </tr>";
 
-  <div id="disponibilite" class="admin_function" style="display: none;">
+  
+                $creneau=array("8:00-10:00","10:00-12:00","12:00-14:00","14:00-16:00","16:00-18:00","18:00-20:00"); 
+                $time=6;
+                foreach ($creneau as $h2){
+                    $time=$time+2;
+                    echo "<tr>";
+                    echo "<td>".$h2."</td>";
+                    for ($i=1;$i<=7;$i=$i+1){  
+                        if (strstr($nounous['jour'],strval($i)) and intval($nounous['heure_debut'])<=$time and intval($nounous['heure_fin'])>=$time+2) {
+                            echo "<td><img src='./img/disp.png' style='width:15px;height:15px;'/></td>";
+                        } else {
+                            echo "<td><img src='./img/occu.png' style='width:15px;height:15px;'/></td>";
+                        }
+                    }
+                    echo "</tr>";
+                }
+
+         
+        echo "</table>"; ?>
+   </div>
+  <div id="disponibilite" class="admin_function" >
     <form role="form" action="./disponibilite_action.php" method="post" name="dispo" >
             <fieldset>
                 <legend >Déclarer vos disponibilités</legend>
