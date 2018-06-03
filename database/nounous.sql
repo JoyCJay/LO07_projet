@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 31 mai 2018 à 15:07
+-- Généré le :  Dim 03 juin 2018 à 20:51
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -53,21 +53,28 @@ CREATE TABLE IF NOT EXISTS `contrat` (
   `revenue` float NOT NULL,
   `debut` date NOT NULL,
   `fin` date NOT NULL,
-  `nounous` varchar(20) NOT NULL,
-  `parents` varchar(20) NOT NULL,
-  `evaluation` text NOT NULL,
+  `id_nounous` int(5) NOT NULL,
+  `id_parents` int(5) NOT NULL,
+  `evaluation` varchar(50) DEFAULT 'non',
   `type` varchar(50) NOT NULL,
-  `note` float DEFAULT NULL,
+  `note` float DEFAULT '0',
   `nom_p` varchar(15) NOT NULL,
   `nom_n` varchar(15) NOT NULL,
   `prenom_p` varchar(15) NOT NULL,
   `prenom_n` varchar(15) NOT NULL,
-  `jour` varchar(10) NOT NULL,
-  `heure` int(2) NOT NULL,
+  `jour` varchar(25) NOT NULL,
+  `heure` varchar(15) NOT NULL,
   PRIMARY KEY (`id_contrat`),
-  KEY `nounous_fk` (`nounous`),
-  KEY `parents_fk` (`parents`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `nounous_fk` (`id_nounous`),
+  KEY `parents_fk` (`id_parents`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `contrat`
+--
+
+INSERT INTO `contrat` (`id_contrat`, `revenue`, `debut`, `fin`, `id_nounous`, `id_parents`, `evaluation`, `type`, `note`, `nom_p`, `nom_n`, `prenom_p`, `prenom_n`, `jour`, `heure`) VALUES
+(5, 28, '2018-06-20', '2018-06-21', 107, 102, 'tres bien', 'babysit', 4, 'masson', 'Lehoucq', '', 'celine', '1', '12-16');
 
 -- --------------------------------------------------------
 
@@ -220,8 +227,8 @@ INSERT INTO `parents` (`id_parents`, `login`, `mot de passe`, `nom`, `ville`, `e
 -- Contraintes pour la table `contrat`
 --
 ALTER TABLE `contrat`
-  ADD CONSTRAINT `nounous_fk` FOREIGN KEY (`nounous`) REFERENCES `nounous` (`login`),
-  ADD CONSTRAINT `parents_fk` FOREIGN KEY (`parents`) REFERENCES `parents` (`login`);
+  ADD CONSTRAINT `nounous_fk` FOREIGN KEY (`id_nounous`) REFERENCES `nounous` (`id_nounous`),
+  ADD CONSTRAINT `parents_fk` FOREIGN KEY (`id_parents`) REFERENCES `parents` (`id_parents`);
 
 --
 -- Contraintes pour la table `enfant`

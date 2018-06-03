@@ -87,7 +87,7 @@
             </div>
             <div id="collapseTwo" class="collapse">
               <div class="card-block">
-                <a class="B" href="#filtrer nounous" onclick="afficherC1('filtrer nounous');">Filtrer nounous</a><br/>
+                <a class="B" href="#filtrer nounous" onclick="afficherC1('filtrer_nounous');">Filtrer nounous</a><br/>
     
               </div>
             </div>
@@ -214,7 +214,7 @@
     </form>
   </div>
 
-  <div class="parent_function" id="filtrer nounous">
+  <div class="parent_function" id="filtrer_nounous">
   <form enctype="multipart/form-data" method="post" name="form1" action = 'filtrer_nounous.php'>
     <div class="form_left form_l1">
     <h2>Recherche floue</h2></div>

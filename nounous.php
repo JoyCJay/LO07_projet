@@ -201,8 +201,6 @@
         </form>
   </div>
 
-
-
   <div id="mes_contrat" class="admin_function" style="display: none;">
     tous mes contrats
   </div>

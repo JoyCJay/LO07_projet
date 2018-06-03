@@ -1,5 +1,10 @@
 <?php
     session_start();
+    
+    echo "<pre>";
+    //print_r($_SESSION);
+    echo "</pre>";
+
     $sql_sentence="select * from enfant where parents='".$_SESSION['login']."';";
     $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
     $DB_result = mysqli_query($DB_conn,$sql_sentence); 
@@ -72,6 +77,18 @@
                 <input type="date"  id="df" name="df" max=<?php echo $_SESSION['date_fin'];?> required="required" > 
                 </div></div>
 
+                <div class="form-group row">
+                <label for="hd" class="col-sm-4 form-control-label">Heure debut:</label>
+                <div class="col-sm-8">
+                <input type="number"  id="hd" name="hd" step="2" min=<?php echo $_SESSION['heure_debut'];?> required="required" > 
+                </div></div>
+                
+                <div class="form-group row">
+                <label for="hf" class="col-sm-4 form-control-label">Heure fin:</label>
+                <div class="col-sm-8">
+                <input type="number"  id="hf" name="hf" step="2" max=<?php echo $_SESSION['heure_fin'];?> required="required" > 
+                </div></div>
+
                 <label for="jour" class=" form-control-label">Jours de travaille:</label>
                 <ul >
                     <?php
@@ -135,9 +152,9 @@
                         }
                     ?>
                 </div>
-                <button onclick="devis();">Devis</button>
             </fieldset>
         </form>
+        <button type="button" onclick="devis();">Devis</button>
   </div>
 </body>
 </html>
