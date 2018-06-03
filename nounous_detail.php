@@ -69,6 +69,7 @@
         <div class="row">
             <img src="<?php echo $temp['photo'] ?>" style="width:120px;height:120px;">
             <span style="position:relative;top:30px;">
+                <div class="col">ID:<?php echo $temp['id_nounous'] ?></div>
                 <div class="col">Nom:<?php echo $temp['nom'] ?></div>
                 <div class="col">Prenom:<?php echo $temp['prenom'] ?></div>
                 <div class="col">Age:<?php echo $temp['age'] ?></div>
@@ -124,7 +125,22 @@
     </li>
     <li style="width:600px;">
         <h2>Commentaire</h2>
-        <p>this paragraph is for commentaire</p>
+       <?php
+    $sql="select * from contrat where id_nounous=".$temp['id_nounous'].";";
+    $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+    $DB_result = mysqli_query($DB_conn,$sql); 
+    if ($DB_result){
+        $contrat = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC);
+    }
+    echo "<ul>";
+    echo "<li>";
+    echo $contrat['evaluation']; 
+    echo "<br /><i>commenté par ".$contrat['nom_p']."</i>";
+    echo "</li>";
+    echo "</ul>";
+    
+    mysqli_close($DB_conn);
+    ?>
     </li>
 </ul>
 
