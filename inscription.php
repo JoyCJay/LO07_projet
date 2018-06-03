@@ -7,7 +7,7 @@
     }
     function insert_nounous_DBR($push){
         $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
-        $sql_sentence = "INSERT INTO `nounous` (`id_nounous`, `login`, `mot de passe`, `nom`, `prenom`, `age`, `ville`, `disponibilite`, `situation`, `email`, `portable`, `photo`, `langues`, `presentation`, `experience`) VALUES("
+        $sql_sentence = "INSERT INTO `nounous` (`id_nounous`, `login`, `mot de passe`, `nom`, `prenom`, `age`, `ville`, `situation`, `email`, `portable`, `photo`, `langues`, `presentation`, `experience`) VALUES("
             .$push["id_nounous"].","
             ."'".$push['login']."',"
             ."'".$push['mot de passe']."',"
@@ -15,14 +15,13 @@
             ."'".$push['prenom']."',"
             .$push["age"].","
             ."'".$push['ville']."',"
-            ."'a',"
             ."'".$push['situation']."',"
             ."'".$push['email']."',"
             ."'".$push['portable']."',"
             ."'".$push['photo']."',"
             ."'".$push['langues']."',"
-            ."'".$push['presentation']."',"
-            ."'".$push['experience']."'"
+            ."'".str_replace("'", "''", $push['presentation'])."',"
+            ."'".str_replace("'", "''", $push['experience'])."'"
             .");";
         echo $sql_sentence;
         $DB_result = mysqli_query($DB_conn,$sql_sentence);          
@@ -78,8 +77,9 @@
             if (file_exists($photo_path)){
                 echo $_FILES["file"]["name"] . " fichier existe déja! ";
             }
-            else{ //将文件上传到 documents 目录下
+            else{
                 move_uploaded_file($_FILES["file"]["tmp_name"],$photo_path);
+                echo "<h3>Photo move to $photo_path!</h3>";
             }
         } else {
         echo '<h3>Photo error!</h3>';

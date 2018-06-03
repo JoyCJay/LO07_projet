@@ -24,7 +24,7 @@
         $couting_time = strtotime("+1day",$couting_time);//next day
     }
     
-    //$DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+    $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
     $sql_sentence = "INSERT INTO `contrat` (`nom_p`, `prenom_p`, `id_parents`, `nom_n`, `prenom_n`, `id_nounous`, `type`, `debut`, `fin`, `jour`, `heure`,`revenue`) 
     VALUES("
         ."'".$_POST['NomA']."',"
@@ -42,7 +42,6 @@
         ;
     echo $sql_sentence;
 
-
-    //$DB_result = mysqli_query($DB_conn,$sql_sentence);          
-    //mysqli_close($DB_conn);
+    $DB_result = mysqli_query($DB_conn,$sql_sentence);          
+    mysqli_close($DB_conn);
 ?>

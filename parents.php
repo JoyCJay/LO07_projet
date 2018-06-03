@@ -296,22 +296,25 @@
     </div>
   </form>
   </div>
-    <div class="parent_function" style="display:none" id="mes_reser">
-    </div>
-    <div class="parent_function" style="display:none" id="evaluer" >
+
+  <div class="parent_function" style="display:none" id="mes_reser">
+
+  </div>
+  
+  <div class="parent_function" style="display:none" id="evaluer" >
     <h3> Evaluer vos réservations</h3><br/>
     <form   method="post" name="form4" action = '#'>
     <fieldset> 
     <div class="form-group row">
-    <label for="id_contrat" class="col-sm-4 form-control-label">ID contrat:</label>
-    <div class="col-sm-8">
-      <input type="text"  id="id_contrat" name="id_contrat" placeholder="id contrat">
-    </div>
+      <label for="id_contrat" class="col-sm-4 form-control-label">ID contrat:</label>
+      <div class="col-sm-8">
+        <input type="text"  id="id_contrat" name="id_contrat" placeholder="id contrat">
+      </div>
     </div>
     
     <div class="form-group row">
-    <label for="note" class="col-sm-4 form-control-label">Note:</label>
-    <div class="col-sm-8">
+      <label for="note" class="col-sm-4 form-control-label">Note:</label>
+      <div class="col-sm-8">
       <div class="rating">
         <input type="radio" id="star5" name="rating" value="5" hidden/>
         <label for="star5"></label>
@@ -323,41 +326,38 @@
         <label for="star2"></label>
         <input type="radio" id="star1" name="rating" value="1" hidden/>
         <label for="star1"></label>
+      </div>
+      </div>
     </div>
+
+    <div class="form-group row">
+      <label for="evaluation" class="col-sm-4 form-control-label">Votre évaluation:</label>
+      <div class="col-sm-8">
+      <textarea id="evaluation" name="evaluation" style="height:260px ;width: 400px;"></textarea>
+      </div>
     </div>
-    </div>
-        <div class="form-group row">
-    <label for="evaluation" class="col-sm-4 form-control-label">Votre évaluation:</label>
-    <div class="col-sm-8">
-    <textarea id="evaluation" name="evaluation" style="height:260px ;width: 400px;"></textarea>
-    </div>
-    </div>
+
     <div class="form-group ">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="reset" class="btn btn-danger">Reset</button>
-       
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-danger">Reset</button> 
     </div>
     </fieldset>
     </form>
-    <?php
-    
-$id_parents= $_SESSION['id_parents'];
- function ajouter_evaluer(){
-       global $_POST;
-       global $id_parents;
-       if(isset($_POST['rating'])&&isset($_POST['evaluation'])&&isset($_POST['id_contrat'])){
-       $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
-        $sql = "UPDATE `contrat` SET `note`= '".$_POST['rating']."',`evaluation`= '".$_POST['evaluation']."' WHERE `id_contrat`='".$_POST['id_contrat']."' ";
-        echo $sql;
-        $result = mysqli_query($DB_conn,$sql);  
-        echo "<br/>";
-        echo 'Evaluer votre réservation succes !';    
-        mysqli_close($DB_conn);
-       }
-    }
- ajouter_evaluer();
-
-  ?>
+    <?php  
+        $id_parents= $_SESSION['id_parents'];
+        function ajouter_evaluation(){
+          global $_POST;
+          global $id_parents;
+          if(($_POST['rating']!='') and ($_POST['evaluation']!='') and ($_POST['id_contrat']!='')){
+            $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+            $sql = "UPDATE `contrat` SET `note`= '".$_POST['rating']."',`evaluation`= '".str_replace("'", "''", $_POST['evaluation'])."' WHERE `id_contrat`='".$_POST['id_contrat']."' ";
+            $sql = $sql.";";
+            $result = mysqli_query($DB_conn,$sql);  
+            mysqli_close($DB_conn);
+          }    
+        }
+        ajouter_evaluation();
+    ?>
     </div>
 </div>
 
