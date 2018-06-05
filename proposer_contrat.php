@@ -14,7 +14,15 @@
             $enfants[]=$temp;
         }
     }
-    mysqli_close($DB_conn);
+    
+    $sql2="select * from nounous where id_nounous=".$_GET['id_nounous'].";";
+    $DB = mysqli_query($DB_conn,$sql2); 
+   
+    if ($DB){
+        $temp2 = mysqli_fetch_array ($DB,MYSQLI_ASSOC);
+
+    }
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,55 +52,55 @@
                   <label for="Partie_A" class="col-sm-4 form-control-label">Partie A(Parent)</label>
                   <span id="Partie_A">
                       <div class="col">Nom:
-                      <input type="text" id="NomA" name="NomA" style="width:200px;" required="required">
+                      <input type="text" id="NomA" name="NomA" value="<?php echo $_SESSION['nom_famille'] ?>" style="width:200px;" required="required">
                       </div>
                       <div class="col">Prenom:
                       <input type="text" id="PrenomA" name="PrenomA" style="width:200px;" required="required">
                       </div>
                       <div class="col">id_utilisateur:
-                      <input type="text" id="IdA" name="IdA" value=<?php echo $_SESSION['id_utilisateur'] ?> style="width:200px;" required="required">
+                      <input type="text" id="IdA" name="IdA" value="<?php echo $_SESSION['id_utilisateur'] ?>" style="width:200px;" required="required">
                       </div>
                   </span>
                   <label for="Partie_B" class="col-sm-4 form-control-label">Partie B(Nounous)</label>
                   <span id="Partie_B">
                     <div class="col">Nom:
-                    <input type="text" id="NomB" name="NomB" value=<?php echo $_SESSION['nom'] ?> style="width:200px;" required="required">
+                    <input type="text" id="NomB" name="NomB" value="<?php echo $temp2['nom'] ?>" style="width:200px;" required="required">
                     </div>
                     <div class="col">Prenom:
-                    <input type="text" id="PrenomB" name="PrenomB" value=<?php echo $_SESSION['prenom'] ?> style="width:200px;" required="required">
+                    <input type="text" id="PrenomB" name="PrenomB" value="<?php echo $temp2['prenom'] ?>" style="width:200px;" required="required">
                     </div>
                     <div class="col">id_nounous:
-                    <input type="text" id="IdB" name="IdB" value=<?php echo $_SESSION['id_nounous'] ?> style="width:200px;" required="required">
+                    <input type="text" id="IdB" name="IdB" value="<?php echo $temp2['id_nounous'] ?>" style="width:200px;" required="required">
                     </div>
                   </span>
                 </div>                
                 <div class="form-group row">
                 <label for="dd" class="col-sm-4 form-control-label">Date début:</label>
                 <div class="col-sm-8">
-                <input type="date"  id="dd" name="dd" min=<?php echo $_SESSION['date_debut'];?> required="required"> 
+                <input type="date"  id="dd" name="dd" min="<?php echo $temp2['date_debut'];?>" required="required"> 
                 </div></div>
                 <div class="form-group row">
                 <label for="df" class="col-sm-4 form-control-label">Date fin:</label>
                 <div class="col-sm-8">
-                <input type="date"  id="df" name="df" max=<?php echo $_SESSION['date_fin'];?> required="required" > 
+                <input type="date"  id="df" name="df" max="<?php echo $temp2['date_fin'];?>" required="required" > 
                 </div></div>
 
                 <div class="form-group row">
                 <label for="hd" class="col-sm-4 form-control-label">Heure debut:</label>
                 <div class="col-sm-8">
-                <input type="number"  id="hd" name="hd" step="2" min=<?php echo $_SESSION['heure_debut'];?> required="required" > 
+                <input type="number"  id="hd" name="hd" max="20" step="2" min="<?php echo $temp2['heure_debut'];?>" required="required" > 
                 </div></div>
                 
                 <div class="form-group row">
                 <label for="hf" class="col-sm-4 form-control-label">Heure fin:</label>
                 <div class="col-sm-8">
-                <input type="number"  id="hf" name="hf" step="2" max=<?php echo $_SESSION['heure_fin'];?> required="required" > 
+                <input type="number"  id="hf" name="hf" min="8"  step="2" max="<?php echo $temp2['heure_fin'];?>" required="required" > 
                 </div></div>
 
                 <label for="jour" class=" form-control-label">Jours de travaille:</label>
                 <ul >
                     <?php
-                      foreach (explode(",",$_SESSION['jour']) as $day) {
+                      foreach (explode(",",$temp2['jour']) as $day) {
                         if ($day=='1') {
                           echo "<li><input type='checkbox' id='jour' name='jour[]' value='1' /> tous les lundi</li>";
                         }
@@ -114,7 +122,11 @@
                         if ($day=='7') {
                           echo "<li><input type='checkbox' id='jour' name='jour[]' value='7' /> tous les dimanche</li>";
                         }
+                        
                       }
+                      if ($day==' ') {
+                          echo "Ce nounous n'est pas disponible actuellement!";
+                        }
 
                     ?>
                 </ul>
@@ -150,6 +162,7 @@
                             print("<td><input type='checkbox' name='list_enfants[]' value=".$bebe["id_enfant"]."></td>");
                             print("</tr>");
                         }
+                         mysqli_close($DB_conn);
                     ?>
                 </div>
             </fieldset>

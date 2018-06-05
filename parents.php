@@ -8,6 +8,7 @@
   }
   mysqli_close($DB_conn);
   $_SESSION=$_SESSION+$parents;
+  
 ?>
 <!DOCTYPE html>
 <html>
@@ -161,7 +162,7 @@
                   echo "Login: ".$temp1['login'];
                   echo "</li>";
                   echo "<li>";
-                  echo "Nom de famille: ".$temp1['nom'];
+                  echo "Nom de famille: ".$temp1['nom_famille'];
                   echo "</li>";
                   echo "<li>";
                   echo "Ville: ".$temp1['ville'];
@@ -299,6 +300,63 @@
 
   <div class="parent_function" style="display:none" id="mes_reser">
 
+      <?php 
+      function reservation(){
+      $sql_sentence="select * from contrat where id_parents=".$_SESSION['id_utilisateur'].";";
+      $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+      $DB_result = mysqli_query($DB_conn,$sql_sentence); 
+     
+      echo "<h3>Tous mes réservations</h3>";
+      while( $contrat = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC)){
+         echo "<ul><li>";
+         echo "ID: ".$contrat['id_contrat']."</li>";
+         echo "<li>Type du contrat: ".$contrat['type']."</li>";
+         echo "<li>Date début: ".$contrat['debut']."</li>";
+         echo "<li>Date fin: ".$contrat['fin']."</li>";
+         echo "<li>Heure: ".$contrat['heure']."h</li>";
+         echo "<li>ID du nonnous: ".$contrat['id_nounous']."</li>";
+         echo "<li>Nom du nonnous: ".$contrat['nom_n']."</li>";
+         echo "<li>Prénom du nonnous: ".$contrat['prenom_n']."</li>";
+         echo "<li>Prix total: ".$contrat['revenue']."EUR</li>";
+         echo "<li>Évaluation: ".$contrat['evaluation']."</li>";
+         echo "<li>Note: ".$contrat['note']."</li>";
+         echo "</ul>";
+         $sql3= "SELECT * FROM `enfant` WHERE `id_contrat`= '".$contrat['id_contrat']."'";
+         $DB_result2 = mysqli_query($DB_conn,$sql3);  
+         echo "List des enfants occupés:";
+              echo "<table class='table '>";
+              echo "<thead><tr>";
+              echo "<th>ID_enfants</th>"; 
+              echo "<th>Prénom des enfants</th>"; 
+              echo "<th>Date de naissance</th>"; 
+              echo "<th>Restrictions alimentaires</th>"; 
+              echo "</tr></thead>"; 
+              echo "<tbody>";   
+             while($temp2 = mysqli_fetch_array ($DB_result2,MYSQLI_ASSOC)){
+                  echo "<tr>";
+                  echo "<td>";
+                  echo $temp2['id_enfant'];
+                  echo "</td>";
+                  echo "<td>";
+                  echo $temp2['prenom'];
+                  echo "</td>";
+                  echo "<td>";
+                  echo $temp2['date_de_naissance'];
+                  echo "</td>";
+                  echo "<td>";
+                  echo $temp2['restrictions_alimentaires'];
+                  echo "</td>";
+
+            }
+            echo "</tbody>"; 
+            echo "</table>";
+     }
+    
+      
+      mysqli_close($DB_conn);
+      }
+      reservation();
+      ?>
   </div>
   
   <div class="parent_function" style="display:none" id="evaluer" >
@@ -348,7 +406,7 @@
         function ajouter_evaluation(){
           global $_POST;
           global $id_parents;
-          if(($_POST['rating']!='') and ($_POST['evaluation']!='') and ($_POST['id_contrat']!='')){
+          if(isset($_POST['rating']) and ($_POST['evaluation']!='') and ($_POST['id_contrat']!='')){
             $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
             $sql = "UPDATE `contrat` SET `note`= '".$_POST['rating']."',`evaluation`= '".str_replace("'", "''", $_POST['evaluation'])."' WHERE `id_contrat`='".$_POST['id_contrat']."' ";
             $sql = $sql.";";

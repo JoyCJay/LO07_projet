@@ -139,8 +139,7 @@
             </div>
             <div id="collapseTwo" class="collapse">
               <div class="card-block">
-                <a>Afficher tous les contrats</a></br>
-                <a>Filtrer contrats</a></br>
+                <a class="B" href="#admin2-1" onclick="afficherC('contrat');">Afficher tous les contrats</a></br>
               </div>
             </div>
           </div>
@@ -153,7 +152,7 @@
             </div>
             <div id="collapseThree" class="collapse">
               <div class="card-block">
-              <a class="B" href="#admin3-1" onclick="afficherC('piechart');">Repartition de nounous</a></br>
+              <a class="B" href="#admin3-1" onclick="afficherC('piechart');">a.Repartition de nounous</a></br>
               <a>b.Chiffre d’affair</a></br>
               <a>c.Tendance du site</a></br>
               <a>d.Boite de message</a></br>
@@ -219,7 +218,7 @@
   </form>
   </div>
 
-  <div id="piechart" class="admin_function" style="display: none,width:500px;">
+  <div id="piechart" class="admin_function" style="display:non ; width:500px;">
   </div>
 
 </div>

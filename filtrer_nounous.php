@@ -46,10 +46,11 @@
                 $sql_sentence=$sql_sentence." and date_fin>'".$_POST['df']."'";
             } 
             //where langues REGEXP ".*francais.*chinois";
+            if (isset($_POST['Language'])){
             if ($_POST['Language']!='') {
                 $SQL_regex = ".*".implode(".*",$_POST['Language']);
                 $sql_sentence=$sql_sentence." and langues REGEXP \"".$SQL_regex."\"";
-            } 
+            } }
             if ($_POST['min'] > 0) {
                 $sql_sentence=$sql_sentence." and age>=".$_POST['min'];
             }

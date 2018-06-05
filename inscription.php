@@ -33,7 +33,7 @@
             .$push["id_parents"].","
             ."'".$push['login']."',"
             ."'".$push['mot de passe']."',"
-            ."'".$push['nom']."',"
+            ."'".$push['nom_famille']."',"
             ."'".$push['ville']."',"
             ."'".$push['email']."',"
             ."'".$push['portable']."',"
@@ -122,7 +122,7 @@
                 "id_parents" => $id_utilisateur,
                 "login" => $_POST['Login'],
                 "mot de passe" => $_POST['Mdp'],
-                "nom" => $_POST['Nom'],
+                "nom_famille" => $_POST['Nom'],
                 "ville" => $_POST['Ville'],
                 "email" => $_POST['Email'],
                 "portable" => $_POST['Portable'],

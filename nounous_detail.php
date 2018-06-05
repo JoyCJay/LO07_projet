@@ -60,7 +60,7 @@
             <p>Payer et commenter</p>
         </li>
     </ul>
-    <button class="btn btn-primary" onClick="location.href='./proposer_contrat.php'">Proposer</button>
+    <button class="btn btn-primary" onclick="location.href='./proposer_contrat.php?id_nounous=<?php echo $temp['id_nounous'] ?>'">Proposer</button>
 </div>
 <div class="container" id="C" style="position:absolute;left:250px;top:150px;width:800px;">
 <ul id="nounous_detail">
@@ -78,6 +78,8 @@
                 <div class="col">Email:<?php echo $temp['email'] ?></div>
                 <div class="col">Portable:<?php echo $temp['portable'] ?></div>
                 <div class="col">Langues:<?php echo $temp['langues'] ?></div>
+                <div class="col">Date debut:<?php echo $temp['date_debut'] ?></div>
+                <div class="col">Date fin:<?php echo $temp['date_fin'] ?></div>
             </span>
         </div>
     </li>
