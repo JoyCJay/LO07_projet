@@ -83,11 +83,11 @@
      global $_POST; 
      global $login;
       $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
-        $sql= "INSERT INTO `enfant` (`id_enfant`, `prenom`, `parents`, `date_de_naissance`, `restrictions_alimentaires`) VALUES( NULL ,
+        $sql= "INSERT INTO `enfant` (`id_enfant`, `prenom`, `parents`, `date_de_naissance`, `restrictions_alimentaires`, `id_contrat`) VALUES( NULL ,
             '".$_POST['prenom'] ."',
             '".$login ."',
              '".$_POST['naissance'] ."',
-             '".$_POST['ra'] ."'
+             '".$_POST['ra'] ."',NULL
            );";
         
         $result = mysqli_query($DB_conn,$sql);          

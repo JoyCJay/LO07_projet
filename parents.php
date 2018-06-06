@@ -321,8 +321,8 @@
          echo "<li>Évaluation: ".$contrat['evaluation']."</li>";
          echo "<li>Note: ".$contrat['note']."</li>";
          echo "</ul>";
-         $sql3= "SELECT * FROM `enfant` WHERE `id_contrat`= '".$contrat['id_contrat']."'";
-         $DB_result2 = mysqli_query($DB_conn,$sql3);  
+         
+        
          echo "List des enfants occupés:";
               echo "<table class='table '>";
               echo "<thead><tr>";
@@ -332,7 +332,12 @@
               echo "<th>Restrictions alimentaires</th>"; 
               echo "</tr></thead>"; 
               echo "<tbody>";   
-             while($temp2 = mysqli_fetch_array ($DB_result2,MYSQLI_ASSOC)){
+              foreach (explode(",",$contrat['list_enfant']) as $enfant) {
+                  $sql3= "SELECT * FROM `enfant` WHERE `id_enfant`= '".$enfant."'";
+                  $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+                  $DB_result2 = mysqli_query($DB_conn,$sql3);  
+                  while($temp2 = mysqli_fetch_array ($DB_result2,MYSQLI_ASSOC)){
+                  
                   echo "<tr>";
                   echo "<td>";
                   echo $temp2['id_enfant'];
@@ -348,6 +353,8 @@
                   echo "</td>";
 
             }
+              }
+             
             echo "</tbody>"; 
             echo "</table>";
      }
@@ -408,8 +415,8 @@
           global $id_parents;
           if(isset($_POST['rating']) and ($_POST['evaluation']!='') and ($_POST['id_contrat']!='')){
             $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
-            $sql = "UPDATE `contrat` SET `note`= '".$_POST['rating']."',`evaluation`= '".str_replace("'", "''", $_POST['evaluation'])."' WHERE `id_contrat`='".$_POST['id_contrat']."' ";
-            $sql = $sql.";";
+            $sql = "UPDATE `contrat` SET `note`= '".$_POST['rating']."',`evaluation`= '".str_replace("'", "''", $_POST['evaluation'])."' WHERE `id_contrat`='".$_POST['id_contrat']."'; ";
+     
             $result = mysqli_query($DB_conn,$sql);  
             mysqli_close($DB_conn);
           }    

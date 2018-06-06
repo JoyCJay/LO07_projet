@@ -25,7 +25,7 @@
     }
     
     $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
-    $sql_sentence = "INSERT INTO `contrat` (`nom_p`, `prenom_p`, `id_parents`, `nom_n`, `prenom_n`, `id_nounous`, `type`, `debut`, `fin`, `jour`, `heure`,`revenue`) 
+    $sql_sentence = "INSERT INTO `contrat` (`nom_p`, `prenom_p`, `id_parents`, `nom_n`, `prenom_n`, `id_nounous`, `type`, `debut`, `fin`, `jour`, `heure`,`revenue`,`list_enfant`) 
     VALUES("
         ."'".$_POST['NomA']."',"
         ."'".$_POST['PrenomA']."',"
@@ -35,13 +35,16 @@
         .$_POST["IdB"].","
         ."'".$_POST['service']."',"
         ."'".$_POST['dd']."',"
-        ."'".$_POST['df']."',"
-        ."'".implode(",",$_POST['jour'])."',"
+        ."'".$_POST['df']."',
+        '".implode(',',$_POST['jour'])."',"
         ."'".$_POST['hd']."-".$_POST['hf']."',"
-        .$money.");"
+        .$money.",'".implode(',', $_POST['list_enfants'])."');"
         ;
     echo $sql_sentence;
-
-    $DB_result = mysqli_query($DB_conn,$sql_sentence);          
+    $a=implode($_POST['list_enfants']);
+            echo $a;
+    $DB_result = mysqli_query($DB_conn,$sql_sentence); 
     mysqli_close($DB_conn);
+    
+    
 ?>

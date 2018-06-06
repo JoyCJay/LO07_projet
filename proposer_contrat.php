@@ -159,7 +159,7 @@
                             print("<td>".$bebe["prenom"]."</td>");
                             print("<td>".$bebe["date_de_naissance"]."</td>");
                             print("<td>".$bebe["restrictions_alimentaires"]."</td>");
-                            print("<td><input type='checkbox' name='list_enfants[]' value=".$bebe["id_enfant"]."></td>");
+                            print("<td><input type='checkbox' id='list_enfants' name='list_enfants[]' value=".$bebe["id_enfant"]."></td>");
                             print("</tr>");
                         }
                          mysqli_close($DB_conn);
