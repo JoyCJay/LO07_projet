@@ -54,6 +54,39 @@
     mysqli_close($DB_conn);
     return 0;
   }
+
+  function contrat_DBR(){
+    echo "<table class='table table-striped'>";
+    echo "<thead>";
+    echo "<tr>";  
+    echo "<th>id_contrat</th>";
+    echo "<th>id_parents</th>";
+    echo "<th>id_nounous</th>";
+    echo "<th>Type</th>";
+    echo "<th>revenue</th>";
+    echo "<th>Do</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    $DB_conn = mysqli_connect ('localhost','solange','abc1234567','nounous');
+    $DB_result = mysqli_query($DB_conn,'select * from contrat ORDER BY revenue DESC;'); 
+    if ($DB_result){
+      while($temp = mysqli_fetch_array ($DB_result,MYSQLI_ASSOC)){
+        print("<tr>");
+        print("<td>".$temp["id_contrat"]."</td>");
+        print("<td>".$temp["id_parents"]."</td>");
+        print("<td><a href='nounous_detail.php?id_contrat=".$temp['id_nounous']."'>".$temp['id_nounous']."</a></td>");
+        print("<td>".$temp["type"]."</td>");
+        print("<td>".$temp["revenue"]."</td>");
+        print("<td><a href='contrat_detail.php?id_contrat=".$temp['id_contrat']."'>Detail</a></td>");
+        print("</tr>");
+      }
+    }
+    mysqli_close($DB_conn);
+  //partie statique
+  echo "</tbody>";
+  echo "</table>"; 
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -221,6 +254,9 @@
   <div id="piechart" class="admin_function" style="display:non ; width:500px;">
   </div>
 
+  <div id="contrat" class="admin_function" style="display: none;">
+  <?php contrat_DBR();?>
+  </div>
 </div>
 
 </body>

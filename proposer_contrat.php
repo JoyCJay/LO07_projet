@@ -102,25 +102,25 @@
                     <?php
                       foreach (explode(",",$temp2['jour']) as $day) {
                         if ($day=='1') {
-                          echo "<li><input type='checkbox' id='jour' name='jour[]' value='1' /> tous les lundi</li>";
+                          echo "<li class='jour'><input type='checkbox' id='jour' name='jour[]' value='1' /> tous les lundi</li>";
                         }
                         if ($day=='2') {
-                          echo "<li><input type='checkbox' id='jour' name='jour[]' value='2' /> tous les mardi</li>";
+                          echo "<li class='jour'><input type='checkbox' id='jour' name='jour[]' value='2' /> tous les mardi</li>";
                         }
                         if ($day=='3') {
-                          echo "<li><input type='checkbox' id='jour' name='jour[]' value='3' /> tous les mercredi</li>";
+                          echo "<li class='jour'><input type='checkbox' id='jour' name='jour[]' value='3' /> tous les mercredi</li>";
                         }
                         if ($day=='4') {
-                          echo "<li><input type='checkbox' id='jour' name='jour[]' value='4' /> tous les jeudi</li>";
+                          echo "<li class='jour'><input type='checkbox' id='jour' name='jour[]' value='4' /> tous les jeudi</li>";
                         }
                         if ($day=='5') {
-                          echo "<li><input type='checkbox' id='jour' name='jour[]' value='5' /> tous les vendredi</li>";
+                          echo "<li class='jour'><input type='checkbox' id='jour' name='jour[]' value='5' /> tous les vendredi</li>";
                         }
                         if ($day=='6') {
-                          echo "<li><input type='checkbox' id='jour' name='jour[]' value='6' /> tous les samedi</li>";
+                          echo "<li class='jour'><input type='checkbox' id='jour' name='jour[]' value='6' /> tous les samedi</li>";
                         }
                         if ($day=='7') {
-                          echo "<li><input type='checkbox' id='jour' name='jour[]' value='7' /> tous les dimanche</li>";
+                          echo "<li class='jour'><input type='checkbox' id='jour' name='jour[]' value='7' /> tous les dimanche</li>";
                         }
                         
                       }
@@ -159,7 +159,7 @@
                             print("<td>".$bebe["prenom"]."</td>");
                             print("<td>".$bebe["date_de_naissance"]."</td>");
                             print("<td>".$bebe["restrictions_alimentaires"]."</td>");
-                            print("<td><input type='checkbox' id='list_enfants' name='list_enfants[]' value=".$bebe["id_enfant"]."></td>");
+                            print("<td class='enfant'><input type='checkbox' name='list_enfants[]' value=".$bebe["id_enfant"]."></td>");
                             print("</tr>");
                         }
                          mysqli_close($DB_conn);
